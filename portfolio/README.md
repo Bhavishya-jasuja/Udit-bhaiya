@@ -164,3 +164,8 @@ connect Vercel. No build command, no output directory.
 
 Before going live, update `https://example.com/` in the canonical link, OG tags, and
 JSON-LD to the real domain, and swap `social-preview.svg` for a real 1200×630 JPG.
+
+**Note on size:** `assets/media/` is 195MB. That is fine for Netlify/Vercel but exceeds
+GitHub's comfortable repo size — if you push to GitHub, either use Git LFS for
+`assets/media/**` or host the video files on a CDN/Vimeo and point the `<source>` tags at
+those URLs instead.
