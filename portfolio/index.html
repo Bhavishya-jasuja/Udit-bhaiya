@@ -1,0 +1,2454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Client Name | Creative Portfolio</title>
+    <meta
+      name="description"
+      content="Portfolio of Client Name, a creative professional producing story-driven work for brands, agencies, and independent clients worldwide."
+    />
+    <meta name="keywords" content="portfolio, creative work, showreel, selected projects" />
+    <meta name="author" content="Client Name" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Client Name" />
+    <meta property="og:url" content="https://example.com/" />
+    <meta property="og:title" content="Client Name | Creative Portfolio" />
+    <meta
+      property="og:description"
+      content="Portfolio of Client Name, a creative professional producing story-driven work for brands, agencies, and independent clients worldwide."
+    />
+    <meta property="og:image" content="https://example.com/assets/img/social-preview.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Portrait of Client Name" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Client Name | Creative Portfolio" />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Client Name, a creative professional producing story-driven work for brands, agencies, and independent clients worldwide."
+    />
+    <meta name="twitter:image" content="https://example.com/assets/img/social-preview.jpg" />
+    <meta property="og:locale" content="en_US" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <link rel="canonical" href="https://example.com/" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://example.com/#person",
+            "name": "Client Name",
+            "url": "https://example.com/",
+            "jobTitle": "Creative Professional",
+            "image": "https://example.com/assets/img/social-preview.jpg",
+            "sameAs": [
+              "https://www.instagram.com/username",
+              "https://www.linkedin.com/in/username",
+              "https://www.behance.net/username"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://example.com/#website",
+            "url": "https://example.com/",
+            "name": "Client Name Portfolio",
+            "publisher": { "@id": "https://example.com/#person" }
+          }
+        ]
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Manrope:wght@400;500;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* Optional display face for the oversized hero watermark.
+         Drop the files into ./assets/fonts/display/ or delete this block —
+         the stack falls back to Space Grotesk cleanly. */
+      @font-face {
+        font-family: "Display Outline";
+        src:
+          url("./assets/fonts/display/display-outline.woff2") format("woff2"),
+          url("./assets/fonts/display/display-outline.woff") format("woff");
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+      }
+
+      :root {
+        --bg: #eeecf2;
+        --bg-soft: #f5f4f8;
+        --ink: #131017;
+        --muted: #5a5566;
+        --accent: #6c3be0;
+        --accent-strong: #5326bd;
+        --accent-soft: #e6dcff;
+        --accent-rgb: 108, 59, 224;
+        --shell: min(1220px, calc(100vw - 36px));
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 88px;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Manrope", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at 16% 12%, rgba(var(--accent-rgb), 0.08), transparent 34%),
+          radial-gradient(circle at 84% 12%, rgba(19, 16, 23, 0.09), transparent 26%),
+          radial-gradient(circle at 44% 84%, rgba(var(--accent-rgb), 0.05), transparent 32%),
+          linear-gradient(180deg, #f0eff1 0%, #e9e8ec 52%, #f0eff1 100%);
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image: linear-gradient(rgba(19, 16, 23, 0.022) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(19, 16, 23, 0.022) 1px, transparent 1px);
+        background-size: 32px 32px;
+        mask-image: radial-gradient(circle at center, black 30%, transparent 92%);
+        -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 92%);
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 60;
+        padding: 14px 0;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        background: linear-gradient(180deg, rgba(241, 239, 244, 0.86), rgba(241, 239, 244, 0.58));
+      }
+
+      .header-inner,
+      .page,
+      .site-footer {
+        width: var(--shell);
+        margin: 0 auto;
+      }
+
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 10px;
+      }
+
+      .brand__name {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+      }
+
+      .brand__name span {
+        color: var(--accent);
+      }
+
+      .brand__role {
+        margin: 0;
+        font-size: 0.76rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+
+      .topnav {
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .topnav a {
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #423d4d;
+        transition: color 0.2s ease;
+      }
+
+      .topnav a:hover,
+      .topnav a:focus {
+        color: var(--accent);
+      }
+
+      .page {
+        padding: 14px 0 72px;
+      }
+
+      /* ---------------- Hero ---------------- */
+
+      .hero {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+        align-items: end;
+        gap: clamp(18px, 4vw, 44px);
+        min-height: min(82vh, 900px);
+      }
+
+      .hero__intro {
+        position: relative;
+        padding-top: 20px;
+      }
+
+      .hero__kicker {
+        margin: 0;
+        font-size: 0.94rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: #514b5d;
+      }
+
+      .hero__name {
+        margin: 8px 0 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.72rem, 4.2vw, 3.44rem);
+        line-height: 0.9;
+        letter-spacing: -0.03em;
+        text-transform: uppercase;
+      }
+
+      .hero__name span {
+        color: var(--accent);
+      }
+
+      .hero__copy {
+        margin: 20px 0 0;
+        max-width: 48ch;
+        line-height: 1.8;
+        color: var(--muted);
+        font-size: clamp(0.95rem, 1.2vw, 1.06rem);
+      }
+
+      .hero-tools {
+        margin-top: 18px;
+      }
+
+      .hero-tools__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+      }
+
+      .hero-tool {
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(16, 9, 32, 0.9);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.28);
+        transition: transform 0.2s ease, border-color 0.2s ease;
+      }
+
+      .hero-tool:hover,
+      .hero-tool:focus {
+        transform: translateY(-2px);
+        border-color: rgba(255, 255, 255, 0.34);
+      }
+
+      .hero-tool img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
+      }
+
+      .hero__meta {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+        max-width: 560px;
+      }
+
+      .hero__meta-item {
+        padding-top: 10px;
+        border-top: 1px solid rgba(19, 16, 23, 0.2);
+      }
+
+      .hero__meta-item strong {
+        display: block;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.5rem, 2.8vw, 2rem);
+        line-height: 1;
+      }
+
+      .hero__meta-item span {
+        margin-top: 8px;
+        display: block;
+        font-size: 0.66rem;
+        font-weight: 800;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: #605a6c;
+      }
+
+      .hero__portrait {
+        position: relative;
+        align-self: end;
+        justify-self: end;
+        width: min(92%, 490px);
+        min-height: 520px;
+      }
+
+      .hero__portrait::before {
+        content: "";
+        position: absolute;
+        inset: 14% 8% 2% 16%;
+        border-radius: 50% 50% 36% 36%;
+        background: radial-gradient(
+          circle at 30% 26%,
+          rgba(var(--accent-rgb), 0.36),
+          rgba(44, 16, 96, 0.2) 48%,
+          transparent 78%
+        );
+        filter: blur(10px);
+        z-index: 0;
+      }
+
+      .hero__image-title,
+      .hero__image-subtitle {
+        margin: 0;
+        position: absolute;
+        white-space: nowrap;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .hero__image-title {
+        left: -76%;
+        top: 18%;
+        font-family: "Display Outline", "Space Grotesk", sans-serif;
+        font-size: clamp(3rem, 9.6vw, 8.8rem);
+        line-height: 0.86;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: rgba(19, 16, 23, 0.14);
+      }
+
+      .hero__image-subtitle {
+        left: -36%;
+        top: 66%;
+        font-family: "Caveat", cursive;
+        font-size: clamp(2rem, 5.8vw, 4.8rem);
+        line-height: 1;
+        color: rgba(var(--accent-rgb), 0.5);
+      }
+
+      .hero__portrait img {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        object-position: center top;
+        filter: contrast(1.04) saturate(1.04);
+      }
+
+      .hero-social {
+        position: relative;
+        z-index: 3;
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .hero-social a {
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: #1f1a29;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(19, 16, 23, 0.14);
+        box-shadow: 0 8px 18px rgba(16, 11, 30, 0.18);
+        transition: transform 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+
+      .hero-social a:hover,
+      .hero-social a:focus {
+        color: var(--accent);
+        border-color: rgba(var(--accent-rgb), 0.38);
+        transform: translateY(-2px);
+      }
+
+      .hero-social svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      .hero-social .hero-social-text {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      /* ---------------- Section shell ---------------- */
+
+      .section {
+        position: relative;
+        margin-top: clamp(72px, 10vw, 130px);
+      }
+
+      .section__script {
+        margin: 0;
+        position: absolute;
+        right: 0;
+        top: -26px;
+        font-family: "Caveat", cursive;
+        font-size: clamp(2.2rem, 7vw, 6.2rem);
+        line-height: 1;
+        color: rgba(var(--accent-rgb), 0.22);
+        pointer-events: none;
+        transform: rotate(-4deg);
+      }
+
+      .section__title {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2.4rem, 8vw, 8rem);
+        line-height: 0.86;
+        letter-spacing: -0.045em;
+        text-transform: uppercase;
+      }
+
+      .section__lead {
+        margin: 18px 0 0;
+        max-width: 64ch;
+        color: var(--muted);
+        line-height: 1.76;
+      }
+
+      #portfolio .section__lead {
+        margin-top: 30px;
+      }
+
+      @media (min-width: 1081px) {
+        #portfolio .section__script {
+          top: 96px;
+        }
+
+        #journey .section__title {
+          margin-top: 96px;
+        }
+
+        #journey .section__script {
+          top: 70px;
+        }
+      }
+
+      /* ---------------- Showreel ---------------- */
+
+      .showreel-grid {
+        margin-top: 24px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .showreel-grid.is-single {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .showreel-card {
+        margin: 0;
+      }
+
+      .showreel-frame {
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 24px;
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.62), rgba(var(--accent-rgb), 0.14));
+        box-shadow: 0 20px 46px rgba(18, 12, 40, 0.16);
+      }
+
+      .showreel-frame::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 22%, rgba(12, 9, 22, 0.24));
+      }
+
+      .showreel-frame iframe,
+      .showreel-frame video {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: 0;
+        display: block;
+        background: #000;
+      }
+
+      .showreel-caption {
+        margin-top: 12px;
+      }
+
+      .showreel-caption h3 {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.2rem, 2.6vw, 1.72rem);
+        line-height: 1.1;
+      }
+
+      .showreel-caption p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .showreel-caption a {
+        margin-top: 10px;
+        display: inline-flex;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent-strong);
+      }
+
+      .showreel-caption a:hover,
+      .showreel-caption a:focus {
+        color: var(--accent);
+      }
+
+      /* ---------------- What I Do (glass tilt cards) ---------------- */
+
+      .whatido-block {
+        margin-top: 34px;
+      }
+
+      .whatido-title {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+      }
+
+      .whatido-intro {
+        margin: 10px 0 0;
+        max-width: 62ch;
+        color: var(--muted);
+        line-height: 1.72;
+      }
+
+      .whatido-grid {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .whatido-card {
+        --mx: 50%;
+        --my: 50%;
+        --tilt-x: 0deg;
+        --tilt-y: 0deg;
+        --lift: 0px;
+        margin: 0;
+        position: relative;
+        isolation: isolate;
+        overflow: hidden;
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.46);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.14));
+        padding: 18px 18px 16px;
+        box-shadow:
+          0 20px 34px rgba(20, 14, 44, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.52);
+        backdrop-filter: blur(16px) saturate(145%);
+        -webkit-backdrop-filter: blur(16px) saturate(145%);
+        transform: perspective(920px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(var(--lift));
+        transition: transform 0.22s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        will-change: transform;
+      }
+
+      .whatido-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        background:
+          radial-gradient(220px 150px at var(--mx) var(--my), rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0) 62%),
+          radial-gradient(120% 70% at 18% -10%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 58%),
+          linear-gradient(140deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02));
+      }
+
+      .whatido-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.62;
+        background: radial-gradient(
+          220px 180px at var(--mx) var(--my),
+          rgba(var(--accent-rgb), 0.3),
+          rgba(var(--accent-rgb), 0) 72%
+        );
+        transition: opacity 0.2s ease;
+      }
+
+      .whatido-card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .whatido-card:hover {
+        --lift: -4px;
+        border-color: rgba(255, 255, 255, 0.66);
+        box-shadow:
+          0 26px 40px rgba(20, 14, 44, 0.16),
+          inset 0 1px 0 rgba(255, 255, 255, 0.62);
+      }
+
+      .whatido-card.is-active::after {
+        opacity: 0.92;
+      }
+
+      .whatido-meta {
+        display: inline-block;
+        margin-bottom: 8px;
+        font-size: 0.64rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: #625b70;
+      }
+
+      .whatido-card h4 {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.02rem, 1.8vw, 1.3rem);
+        line-height: 1.2;
+      }
+
+      .whatido-card p {
+        margin: 8px 0 0;
+        color: var(--muted);
+        line-height: 1.66;
+      }
+
+      /* ---------------- Portfolio ---------------- */
+
+      .social-grid figure,
+      .journey-poster-wall figure {
+        margin: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .social-grid img,
+      .journey-poster-wall img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .commercial-heading,
+      .social-stories-heading {
+        margin: 24px 0 10px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(1.2rem, 2.6vw, 1.9rem);
+        line-height: 1.1;
+        letter-spacing: -0.01em;
+        text-transform: uppercase;
+      }
+
+      .commercial-grid {
+        margin-top: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .commercial-item {
+        margin: 0;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(19, 16, 23, 0.14);
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: 0 10px 24px rgba(18, 12, 34, 0.12);
+      }
+
+      .commercial-item video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border: 0;
+        background: #000;
+      }
+
+      .social-feature {
+        margin-top: 24px;
+        border-radius: 22px;
+        border: 1px solid rgba(19, 16, 23, 0.16);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 14px 28px rgba(18, 12, 34, 0.14);
+      }
+
+      .social-feature img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+      }
+
+      .social-grid {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .social-story {
+        margin: 0;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .social-story video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+        border: 0;
+        border-radius: 18px;
+        background: #000;
+      }
+
+      /* ---------------- Category blocks ---------------- */
+
+      .cat-block {
+        margin-top: clamp(38px, 5vw, 62px);
+      }
+
+      .cat-note {
+        margin: 6px 0 0;
+        color: var(--muted);
+        line-height: 1.7;
+        max-width: 62ch;
+      }
+
+      .cat-count {
+        display: inline-block;
+        margin-left: 10px;
+        padding: 3px 9px;
+        border-radius: 999px;
+        vertical-align: middle;
+        font-family: "Manrope", sans-serif;
+        font-size: 0.6rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        color: var(--accent-strong);
+        background: rgba(var(--accent-rgb), 0.12);
+        border: 1px solid rgba(var(--accent-rgb), 0.22);
+      }
+
+      .brand-group {
+        margin-top: 22px;
+      }
+
+      .brand-head {
+        margin: 0 0 10px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #4a4356;
+      }
+
+      .brand-head::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.34), transparent);
+      }
+
+      /* 4:5 key-art grid */
+      .shot-grid {
+        margin-top: 12px;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .shot {
+        margin: 0;
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid rgba(19, 16, 23, 0.14);
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: 0 10px 24px rgba(18, 12, 34, 0.12);
+      }
+
+      .shot img {
+        width: 100%;
+        /* height:auto is required — the width/height attributes on the <img>
+           act as presentational hints and would otherwise beat aspect-ratio. */
+        height: auto;
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        transition: transform 0.4s ease;
+      }
+
+      .shot:hover img {
+        transform: scale(1.04);
+      }
+
+      /* Mixed-ratio masonry for the graphics set */
+      .masonry {
+        margin-top: 12px;
+        columns: 4;
+        column-gap: 12px;
+      }
+
+      .masonry figure {
+        margin: 0 0 12px;
+        break-inside: avoid;
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid rgba(19, 16, 23, 0.14);
+        background: rgba(255, 255, 255, 0.84);
+        box-shadow: 0 10px 24px rgba(18, 12, 34, 0.12);
+      }
+
+      .masonry img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.4s ease;
+      }
+
+      .masonry figure:hover img {
+        transform: scale(1.04);
+      }
+
+      /* ---------------- Video popup ---------------- */
+
+      .video-popup {
+        position: fixed;
+        inset: 0;
+        z-index: 1400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: clamp(14px, 2.4vw, 28px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.26s ease;
+      }
+
+      .video-popup[hidden] {
+        display: none;
+      }
+
+      .video-popup.is-open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .video-popup__backdrop {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 30% 18%, rgba(150, 110, 255, 0.24), rgba(14, 10, 24, 0) 42%),
+          radial-gradient(circle at 78% 84%, rgba(206, 160, 255, 0.16), rgba(14, 10, 24, 0) 38%),
+          rgba(14, 10, 24, 0.58);
+        backdrop-filter: blur(12px) saturate(126%);
+        -webkit-backdrop-filter: blur(12px) saturate(126%);
+      }
+
+      .video-popup__panel {
+        position: relative;
+        width: min(1200px, 96vw);
+        border-radius: 24px;
+        padding: clamp(10px, 1.4vw, 16px);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        background: linear-gradient(142deg, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.14));
+        box-shadow:
+          0 36px 70px rgba(14, 10, 34, 0.36),
+          inset 0 1px 0 rgba(255, 255, 255, 0.58);
+        backdrop-filter: blur(18px) saturate(150%);
+        -webkit-backdrop-filter: blur(18px) saturate(150%);
+        transform: translateY(14px) scale(0.985);
+        transition: transform 0.26s ease;
+        overflow: hidden;
+      }
+
+      .video-popup.is-open .video-popup__panel {
+        transform: none;
+      }
+
+      .video-popup__panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(420px 180px at 18% -8%, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0) 64%),
+          linear-gradient(130deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.02));
+      }
+
+      .video-popup__frame {
+        position: relative;
+        z-index: 1;
+        border-radius: 16px;
+        overflow: hidden;
+        background: #000;
+      }
+
+      .video-popup__video {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        background: #000;
+      }
+
+      /* Most of the library is 9:16 — the lightbox reshapes to match. */
+      .video-popup.is-portrait .video-popup__panel {
+        width: min(440px, 92vw);
+      }
+
+      .video-popup.is-portrait .video-popup__video {
+        aspect-ratio: 9 / 16;
+        max-height: 78vh;
+        object-fit: contain;
+      }
+
+      .video-popup__title {
+        position: relative;
+        z-index: 1;
+        margin: 10px 2px 2px;
+        font-size: 0.72rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(24, 19, 41, 0.72);
+      }
+
+      .video-popup__close {
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        z-index: 2;
+        width: 38px;
+        height: 38px;
+        border: 1px solid rgba(255, 255, 255, 0.58);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.38);
+        color: #16111f;
+        font-size: 1.2rem;
+        line-height: 1;
+        cursor: pointer;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+      }
+
+      .video-popup__close:hover,
+      .video-popup__close:focus {
+        background: rgba(255, 255, 255, 0.62);
+      }
+
+      /* ---------------- Journey ---------------- */
+
+      .journey-poster-wall {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .journey-poster-wall .jp {
+        margin: 0;
+        display: grid;
+        grid-template-rows: auto auto;
+        border-radius: 18px;
+        border: 1px solid rgba(19, 16, 23, 0.16);
+        background: rgba(255, 255, 255, 0.88);
+        overflow: hidden;
+        box-shadow: 0 10px 24px rgba(18, 12, 30, 0.14);
+      }
+
+      .journey-poster-wall .jp img {
+        width: 100%;
+        aspect-ratio: 2 / 3;
+        object-fit: cover;
+      }
+
+      .journey-poster-wall .jp figcaption {
+        margin: 0;
+        padding: 10px 10px 12px;
+        font-size: 0.66rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        line-height: 1.35;
+        color: #474154;
+        background: rgba(255, 255, 255, 0.92);
+      }
+
+      /* ---------------- Contact ---------------- */
+
+      .end-note {
+        margin-top: clamp(72px, 10vw, 130px);
+        padding: 20px 0 8px;
+        border-top: 1px solid rgba(19, 16, 23, 0.18);
+      }
+
+      .end-note h2 {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: clamp(2rem, 5vw, 4rem);
+        letter-spacing: -0.03em;
+        line-height: 0.95;
+        text-transform: uppercase;
+      }
+
+      .end-note p {
+        margin: 12px 0 0;
+        max-width: 60ch;
+        color: var(--muted);
+        line-height: 1.74;
+      }
+
+      .contact-grid {
+        margin-top: 20px;
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+        gap: 14px;
+        align-items: start;
+      }
+
+      .contact-form {
+        margin: 0;
+        padding: 18px;
+        border-radius: 22px;
+        border: 1px solid rgba(255, 255, 255, 0.42);
+        background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.13));
+        box-shadow:
+          0 16px 32px rgba(18, 12, 34, 0.14),
+          inset 0 1px 0 rgba(255, 255, 255, 0.56);
+        backdrop-filter: blur(12px) saturate(132%);
+        -webkit-backdrop-filter: blur(12px) saturate(132%);
+      }
+
+      .contact-form__row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .contact-form__group {
+        margin-top: 10px;
+      }
+
+      .contact-form__group:first-child {
+        margin-top: 0;
+      }
+
+      .contact-field {
+        display: block;
+        width: 100%;
+        min-height: 50px;
+        border: 1px solid rgba(19, 16, 23, 0.22);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.78);
+        padding: 0 14px;
+        font: inherit;
+        color: #1b1626;
+      }
+
+      .contact-field::placeholder {
+        color: #6d6680;
+      }
+
+      .contact-field:focus {
+        outline: none;
+        border-color: rgba(var(--accent-rgb), 0.54);
+        box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.16);
+      }
+
+      textarea.contact-field {
+        min-height: 150px;
+        padding: 12px 14px;
+        resize: vertical;
+      }
+
+      .contact-submit {
+        margin-top: 12px;
+        border: 1px solid rgba(30, 20, 60, 0.18);
+        border-radius: 12px;
+        background: var(--accent);
+        color: #faf7ff;
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.84rem 1.05rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+      }
+
+      .contact-submit:hover,
+      .contact-submit:focus {
+        background: var(--accent-strong);
+        transform: translateY(-1px);
+      }
+
+      .contact-info {
+        padding: 16px;
+        border-radius: 20px;
+        border: 1px solid rgba(19, 16, 23, 0.14);
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 12px 24px rgba(18, 12, 34, 0.1);
+      }
+
+      .contact-info__block + .contact-info__block {
+        margin-top: 14px;
+      }
+
+      .contact-info h4 {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 0.92rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+      }
+
+      .contact-info p {
+        margin: 6px 0 0;
+        max-width: none;
+        color: #524c60;
+        line-height: 1.6;
+      }
+
+      .contact-info a {
+        color: #37314a;
+      }
+
+      .contact-info a:hover,
+      .contact-info a:focus {
+        color: var(--accent);
+      }
+
+      .contact-social {
+        margin-top: 8px;
+        justify-content: flex-start;
+      }
+
+      .contact-social a {
+        width: 40px;
+        height: 40px;
+      }
+
+      .end-links {
+        margin-top: 16px;
+        display: inline-flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .end-links a {
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #372f45;
+      }
+
+      .end-links a:hover,
+      .end-links a:focus {
+        color: var(--accent);
+      }
+
+      .site-footer {
+        margin-top: 32px;
+        padding-bottom: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 0.78rem;
+        color: #635c70;
+      }
+
+      /* ---------------- Reveal on scroll ---------------- */
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(22px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+
+      [data-reveal].is-in {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ---------------- Responsive ---------------- */
+
+      @media (max-width: 1080px) {
+        .hero {
+          grid-template-columns: 1fr;
+          min-height: auto;
+          gap: 24px;
+        }
+
+        .hero__portrait {
+          width: min(78vw, 460px);
+          justify-self: start;
+          min-height: 500px;
+        }
+
+        .hero__image-title {
+          left: -6%;
+          top: -2%;
+          font-size: clamp(2.8rem, 12vw, 7rem);
+        }
+
+        .hero__image-subtitle {
+          left: 8%;
+          top: 69%;
+          font-size: clamp(2rem, 7vw, 4.2rem);
+        }
+
+        .section__script {
+          right: auto;
+          left: 0;
+        }
+
+        .showreel-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .whatido-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .commercial-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .video-popup__panel {
+          width: min(94vw, 980px);
+        }
+
+        .social-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .journey-poster-wall {
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .shot-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .masonry {
+          columns: 3;
+        }
+
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 760px) {
+        .site-header {
+          padding: 12px 0;
+        }
+
+        .header-inner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+
+        .topnav {
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          width: 100%;
+          scrollbar-width: none;
+        }
+
+        .topnav::-webkit-scrollbar {
+          display: none;
+        }
+
+        .hero__kicker {
+          font-size: 0.78rem;
+          letter-spacing: 0.12em;
+        }
+
+        .hero__name {
+          font-size: clamp(1.48rem, 9vw, 2.3rem);
+        }
+
+        .hero__meta {
+          grid-template-columns: 1fr;
+          max-width: 100%;
+        }
+
+        .hero__portrait {
+          width: min(90vw, 420px);
+          min-height: auto;
+        }
+
+        .hero__image-title {
+          left: 0;
+          top: -4%;
+          font-size: clamp(2.3rem, 13vw, 4.8rem);
+        }
+
+        .hero__image-subtitle {
+          left: 6%;
+          top: 73%;
+          font-size: clamp(1.7rem, 9.4vw, 3rem);
+        }
+
+        .section__lead {
+          font-size: 0.95rem;
+        }
+
+        .social-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .commercial-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .video-popup {
+          padding: 10px;
+        }
+
+        .video-popup__panel {
+          width: 100%;
+          border-radius: 16px;
+          padding: 8px;
+        }
+
+        .video-popup__close {
+          right: 8px;
+          top: 8px;
+          width: 34px;
+          height: 34px;
+        }
+
+        .journey-poster-wall {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .shot-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .masonry {
+          columns: 2;
+        }
+
+        .brand-head {
+          font-size: 0.7rem;
+          letter-spacing: 0.12em;
+        }
+
+        .contact-form {
+          padding: 14px;
+        }
+
+        .contact-form__row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .site-footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        [data-reveal] {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="brand">
+          <p class="brand__name">Client <span>Name</span></p>
+        </div>
+
+        <nav class="topnav" aria-label="Section navigation">
+          <a href="#home">Home</a>
+          <a href="#showreel">Showreel</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#journey">Journey</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="page" id="page-root">
+      <!-- ============ HERO ============ -->
+      <section class="hero" id="home">
+        <div class="hero__intro" data-reveal>
+          <p class="hero__kicker">Client Name</p>
+          <h1 class="hero__name">Creative <span>Professional</span></h1>
+          <p class="hero__copy">
+            One-paragraph introduction goes here. Describe the discipline, the number of years in the craft, the kinds
+            of clients served, and the type of work delivered — keep it to two or three sentences so the hero stays
+            clean and scannable.
+          </p>
+
+          <div class="hero-tools" aria-label="Tools">
+            <div class="hero-tools__list">
+              <span class="hero-tool" title="Tool One" aria-label="Tool One">
+                <img src="./assets/img/tool-1.svg" alt="Tool One" />
+              </span>
+              <span class="hero-tool" title="Tool Two" aria-label="Tool Two">
+                <img src="./assets/img/tool-2.svg" alt="Tool Two" />
+              </span>
+              <span class="hero-tool" title="Tool Three" aria-label="Tool Three">
+                <img src="./assets/img/tool-3.svg" alt="Tool Three" />
+              </span>
+              <span class="hero-tool" title="Tool Four" aria-label="Tool Four">
+                <img src="./assets/img/tool-4.svg" alt="Tool Four" />
+              </span>
+              <span class="hero-tool" title="Tool Five" aria-label="Tool Five">
+                <img src="./assets/img/tool-5.svg" alt="Tool Five" />
+              </span>
+            </div>
+          </div>
+
+          <div class="hero__meta" aria-label="Key stats">
+            <div class="hero__meta-item">
+              <strong>52</strong>
+              <span>Video Edits</span>
+            </div>
+            <div class="hero__meta-item">
+              <strong>26</strong>
+              <span>Design Pieces</span>
+            </div>
+            <div class="hero__meta-item">
+              <strong>7</strong>
+              <span>Hospitality Brands</span>
+            </div>
+          </div>
+        </div>
+
+        <figure class="hero__portrait" data-reveal>
+          <p class="hero__image-subtitle" aria-hidden="true">creative work</p>
+          <img src="./assets/img/portrait.svg" alt="Portrait of Client Name" loading="eager" />
+          <div class="hero-social" aria-label="Social links">
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5zm8.9 1.75a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8A3.2 3.2 0 1 0 12 15.2 3.2 3.2 0 0 0 12 8.8z"
+                />
+              </svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M5.3 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM3.8 8.7h3v11.5h-3V8.7zm5.1 0h2.9v1.6h.1c.4-.8 1.4-1.9 3.3-1.9 3.5 0 4.1 2.3 4.1 5.3v6.5h-3v-5.8c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.9h-3V8.7z"
+                />
+              </svg>
+            </a>
+            <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Portfolio profile" title="Profile">
+              <span class="hero-social-text">Link</span>
+            </a>
+          </div>
+        </figure>
+      </section>
+
+      <!-- ============ SHOWREEL ============ -->
+      <section class="section" id="showreel">
+        <p class="section__script">show reel</p>
+        <h2 class="section__title" data-reveal>Show Reel</h2>
+        <p class="section__lead" data-reveal>
+          The feature film below is the long-form cut. Everything else in the library is built vertical-first for
+          social and in-venue screens — browse it in the portfolio.
+        </p>
+
+        <div class="showreel-grid is-single">
+          <article class="showreel-card" data-reveal>
+            <div class="showreel-frame">
+              <video controls playsinline preload="metadata" poster="">
+                <source src="./assets/media/real-estate/6.mp4#t=0.1" type="video/mp4" />
+              </video>
+            </div>
+            <div class="showreel-caption">
+              <h3>Real Estate Feature</h3>
+              <p>Full-length 1920&times;1080 property film — the anchor piece of the reel.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="whatido-block" data-reveal>
+          <h3 class="whatido-title">What I Do</h3>
+          <p class="whatido-intro">
+            Four working verticals, 78 finished pieces across video and design.
+          </p>
+          <div class="whatido-grid">
+            <article class="whatido-card">
+              <span class="whatido-meta">38 edits &middot; 7 brands</span>
+              <h4>Gastronomy</h4>
+              <p>
+                Vertical food and hospitality edits for restaurants, cafes, and resorts — built for reels, stories,
+                and in-venue screens.
+              </p>
+            </article>
+            <article class="whatido-card">
+              <span class="whatido-meta">8 edits &middot; 14 graphics</span>
+              <h4>Sports Club</h4>
+              <p>
+                Matchday cutdowns and campaign key art for club social channels, delivered as a complete video and
+                design package.
+              </p>
+            </article>
+            <article class="whatido-card">
+              <span class="whatido-meta">6 films</span>
+              <h4>Real Estate</h4>
+              <p>
+                Property walkthroughs and listing films in both long-form landscape and vertical social cuts for
+                agents and developers.
+              </p>
+            </article>
+            <article class="whatido-card">
+              <span class="whatido-meta">12 pieces</span>
+              <h4>Graphics &amp; Key Art</h4>
+              <p>
+                Static design work — posters, campaign key art, and social templates that carry the same visual
+                language as the motion work.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+<!-- ============ PORTFOLIO ============ -->
+      <section class="section" id="portfolio">
+        <p class="section__script">selected work</p>
+        <h2 class="section__title" data-reveal>A shelf of finished work.</h2>
+        <p class="section__lead" data-reveal>
+          78 pieces across four verticals. Tap any clip to open it full size.
+        </p>
+
+        <!-- ---- Gastronomy ---- -->
+        <div class="cat-block">
+          <h3 class="commercial-heading" data-reveal>
+            Gastronomy<span class="cat-count">38 edits</span>
+          </h3>
+          <p class="cat-note" data-reveal>
+            Seven hospitality brands, each with its own run of vertical edits.
+          </p>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Huber &amp; Holly</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/huber-and-holly/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/huber-and-holly/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/huber-and-holly/3.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/huber-and-holly/4.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/huber-and-holly/5.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/huber-and-holly/6.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/huber-and-holly/7.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Kaffa Resorts</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/kaffa-resorts/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/kaffa-resorts/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/kaffa-resorts/3.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/kaffa-resorts/4.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/kaffa-resorts/5.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/kaffa-resorts/6.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Olive &amp; Grill</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/olive-and-grill/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/olive-and-grill/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/olive-and-grill/3.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/olive-and-grill/4.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/olive-and-grill/5.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Papaya Chennai</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/papaya-chennai/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/papaya-chennai/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/papaya-chennai/3.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/papaya-chennai/4.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/papaya-chennai/5.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/papaya-chennai/6.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/papaya-chennai/7.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Penthouse</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/penthouse/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/penthouse/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/penthouse/3.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/penthouse/4.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Sandburgs</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/sandburgs/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/sandburgs/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/sandburgs/3.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/sandburgs/4.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/sandburgs/5.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/sandburgs/6.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/sandburgs/7.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <div class="brand-group">
+            <h4 class="brand-head">W Va Bein</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/w-va-bein/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/gastronomy/w-va-bein/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- Sports Club ---- -->
+        <div class="cat-block">
+          <h3 class="commercial-heading" data-reveal>
+            Sports Club<span class="cat-count">22 pieces</span>
+          </h3>
+          <p class="cat-note" data-reveal>
+            A full club package — matchday video cutdowns plus the campaign key art that runs alongside them.
+          </p>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Video</h4>
+            <div class="social-grid">
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/1.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/2.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/3.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/4.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/5.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/6.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/7.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+              <figure class="social-story" data-reveal>
+                <video controls playsinline muted preload="metadata" data-orient="portrait">
+                  <source src="./assets/media/sports/videos/8.mp4#t=0.1" type="video/mp4" />
+                </video>
+              </figure>
+            </div>
+          </div>
+
+          <div class="brand-group">
+            <h4 class="brand-head">Key Art</h4>
+            <div class="shot-grid">
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/d.jpg" alt="Sports club key art 1" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/e.jpg" alt="Sports club key art 2" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/g.jpg" alt="Sports club key art 3" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/a1.jpg" alt="Sports club key art 4" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/b1.jpg" alt="Sports club key art 5" width="1080" height="1349" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/c1.jpg" alt="Sports club key art 6" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/f1.jpg" alt="Sports club key art 7" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/a2.jpg" alt="Sports club key art 8" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/b2.jpg" alt="Sports club key art 9" width="1080" height="1349" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/c2.jpg" alt="Sports club key art 10" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/f2.jpg" alt="Sports club key art 11" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/a3.jpg" alt="Sports club key art 12" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/c3.jpg" alt="Sports club key art 13" width="1080" height="1350" loading="lazy" />
+              </figure>
+              <figure class="shot" data-reveal>
+                <img src="./assets/media/sports/graphics/f3.jpg" alt="Sports club key art 14" width="1080" height="1350" loading="lazy" />
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- ---- Real Estate ---- -->
+        <div class="cat-block">
+          <h3 class="commercial-heading" data-reveal>
+            Real Estate<span class="cat-count">5 vertical cuts</span>
+          </h3>
+          <p class="cat-note" data-reveal>
+            Vertical listing cuts. The long-form landscape film sits up in the show reel.
+          </p>
+
+          <div class="social-grid">
+            <figure class="social-story" data-reveal>
+              <video controls playsinline muted preload="metadata" data-orient="portrait">
+                <source src="./assets/media/real-estate/1.mp4#t=0.1" type="video/mp4" />
+              </video>
+            </figure>
+            <figure class="social-story" data-reveal>
+              <video controls playsinline muted preload="metadata" data-orient="portrait">
+                <source src="./assets/media/real-estate/2.mp4#t=0.1" type="video/mp4" />
+              </video>
+            </figure>
+            <figure class="social-story" data-reveal>
+              <video controls playsinline muted preload="metadata" data-orient="portrait">
+                <source src="./assets/media/real-estate/3.mp4#t=0.1" type="video/mp4" />
+              </video>
+            </figure>
+            <figure class="social-story" data-reveal>
+              <video controls playsinline muted preload="metadata" data-orient="portrait">
+                <source src="./assets/media/real-estate/4.mp4#t=0.1" type="video/mp4" />
+              </video>
+            </figure>
+            <figure class="social-story" data-reveal>
+              <video controls playsinline muted preload="metadata" data-orient="portrait">
+                <source src="./assets/media/real-estate/5.mp4#t=0.1" type="video/mp4" />
+              </video>
+            </figure>
+          </div>
+        </div>
+
+        <!-- ---- Graphics ---- -->
+        <div class="cat-block">
+          <h3 class="commercial-heading" data-reveal>
+            Graphics<span class="cat-count">12 pieces</span>
+          </h3>
+          <p class="cat-note" data-reveal>
+            Poster and campaign design in mixed formats.
+          </p>
+
+          <div class="masonry">
+            <figure data-reveal>
+              <img src="./assets/media/graphics/1.jpg" alt="Graphic design piece 1" width="735" height="1103" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/2.jpg" alt="Graphic design piece 2" width="736" height="1104" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/3.jpg" alt="Graphic design piece 3" width="736" height="736" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/4.jpg" alt="Graphic design piece 4" width="736" height="736" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/5.jpg" alt="Graphic design piece 5" width="736" height="920" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/6.jpg" alt="Graphic design piece 6" width="736" height="1308" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/7.jpg" alt="Graphic design piece 7" width="736" height="736" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/8.jpg" alt="Graphic design piece 8" width="736" height="826" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/9.jpg" alt="Graphic design piece 9" width="736" height="736" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/10.jpg" alt="Graphic design piece 10" width="720" height="899" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/11.jpg" alt="Graphic design piece 11" width="736" height="920" loading="lazy" />
+            </figure>
+            <figure data-reveal>
+              <img src="./assets/media/graphics/12.jpg" alt="Graphic design piece 12" width="735" height="672" loading="lazy" />
+            </figure>
+          </div>
+        </div>
+      </section>
+
+<!-- ============ JOURNEY ============ -->
+      <section class="section" id="journey">
+        <p class="section__script">the journey</p>
+        <h2 class="section__title" data-reveal>My Journey</h2>
+        <p class="section__lead" data-reveal>
+          Two-to-three sentence career narrative: where it began, who the client trained or worked under, the roles
+          held along the way, and how the scope of the work expanded over time.
+        </p>
+
+        <div class="journey-poster-wall">
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2025)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2025)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2024)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2024)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2024)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2023)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2023)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2023)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2022)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2022)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2021)</figcaption>
+          </figure>
+          <figure class="jp" data-reveal>
+            <img src="./assets/img/poster.svg" alt="Project poster" loading="lazy" />
+            <figcaption>Project Title (2020)</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- ============ CONTACT ============ -->
+      <section class="end-note" id="contact" data-reveal>
+        <h2>Contact Enquiry</h2>
+        <p>
+          Send a quick message below. Enquiries are sent directly to <strong>hello@example.com</strong>.
+        </p>
+
+        <div class="contact-grid">
+          <!-- FormSubmit needs no backend. Replace the email in the action URL,
+               then submit the form once from the live domain to activate it. -->
+          <form class="contact-form" id="contact-enquiry-form" action="https://formsubmit.co/hello@example.com" method="POST">
+            <input type="hidden" name="_subject" value="New Contact Enquiry - Portfolio" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+
+            <div class="contact-form__row contact-form__group">
+              <input class="contact-field" type="text" name="name" placeholder="Your Name*" required />
+              <input class="contact-field" type="email" name="email" placeholder="Email Address*" required />
+            </div>
+
+            <div class="contact-form__group">
+              <input class="contact-field" type="text" name="phone" placeholder="Phone Number" />
+            </div>
+
+            <div class="contact-form__group">
+              <input class="contact-field" type="text" name="subject" placeholder="Subject*" required />
+            </div>
+
+            <div class="contact-form__group">
+              <textarea class="contact-field" name="message" rows="6" placeholder="Your Message*" required></textarea>
+            </div>
+
+            <button type="submit" class="contact-submit">Send Enquiry</button>
+          </form>
+
+          <aside class="contact-info">
+            <div class="contact-info__block">
+              <h4>Email</h4>
+              <p><a href="mailto:hello@example.com">hello@example.com</a></p>
+            </div>
+            <div class="contact-info__block">
+              <h4>Phone</h4>
+              <p>+00 000 000 0000<br />+00 000 000 0000</p>
+            </div>
+            <div class="contact-info__block">
+              <h4>Social</h4>
+              <div class="hero-social contact-social" aria-label="Social links">
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5zm8.9 1.75a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8A3.2 3.2 0 1 0 12 15.2 3.2 3.2 0 0 0 12 8.8z"
+                    />
+                  </svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      d="M5.3 3.6a1.9 1.9 0 1 1 0 3.8 1.9 1.9 0 0 1 0-3.8zM3.8 8.7h3v11.5h-3V8.7zm5.1 0h2.9v1.6h.1c.4-.8 1.4-1.9 3.3-1.9 3.5 0 4.1 2.3 4.1 5.3v6.5h-3v-5.8c0-1.4 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.9h-3V8.7z"
+                    />
+                  </svg>
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="Profile" title="Profile">
+                  <span class="hero-social-text">Link</span>
+                </a>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <div class="end-links">
+          <a href="#home">Back to top</a>
+          <a href="#showreel">Showreel</a>
+          <a href="#portfolio">Portfolio</a>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div>Client Name</div>
+        <div>&copy; 2026 All rights reserved. Client Name. Contact: hello@example.com</div>
+      </footer>
+    </main>
+
+    <!-- ============ VIDEO POPUP ============ -->
+    <div class="video-popup" id="video-popup" hidden aria-hidden="true">
+      <div class="video-popup__backdrop" data-close-video-popup></div>
+      <div class="video-popup__panel" role="dialog" aria-modal="true" aria-labelledby="video-popup-title">
+        <button class="video-popup__close" type="button" aria-label="Close video popup" data-close-video-popup>&times;</button>
+        <div class="video-popup__frame">
+          <video id="video-popup-player" class="video-popup__video" controls playsinline preload="metadata"></video>
+        </div>
+        <p class="video-popup__title" id="video-popup-title">Video</p>
+      </div>
+    </div>
+
+    <script>
+      /* 1. Reveal-on-scroll --------------------------------------------- */
+      (function () {
+        var revealItems = document.querySelectorAll("[data-reveal]");
+
+        if (!revealItems.length || !("IntersectionObserver" in window)) {
+          Array.prototype.forEach.call(revealItems, function (item) {
+            item.classList.add("is-in");
+          });
+          return;
+        }
+
+        var observer = new IntersectionObserver(
+          function (entries, obs) {
+            entries.forEach(function (entry) {
+              if (!entry.isIntersecting) {
+                return;
+              }
+
+              entry.target.classList.add("is-in");
+              obs.unobserve(entry.target);
+            });
+          },
+          {
+            rootMargin: "0px 0px -10% 0px",
+            threshold: 0.14
+          }
+        );
+
+        Array.prototype.forEach.call(revealItems, function (item) {
+          observer.observe(item);
+        });
+      })();
+
+      /* 2. Pointer-tracked tilt + glare on the "What I Do" cards --------- */
+      (function () {
+        var cards = document.querySelectorAll(".whatido-card");
+
+        if (!cards.length) {
+          return;
+        }
+
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          return;
+        }
+
+        if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+          return;
+        }
+
+        function clamp(value, min, max) {
+          return Math.min(Math.max(value, min), max);
+        }
+
+        function resetCard(card) {
+          card.classList.remove("is-active");
+          card.style.setProperty("--mx", "50%");
+          card.style.setProperty("--my", "50%");
+          card.style.setProperty("--tilt-x", "0deg");
+          card.style.setProperty("--tilt-y", "0deg");
+        }
+
+        function updateCard(card, clientX, clientY) {
+          var rect = card.getBoundingClientRect();
+          var x = clamp((clientX - rect.left) / rect.width, 0, 1);
+          var y = clamp((clientY - rect.top) / rect.height, 0, 1);
+
+          card.style.setProperty("--mx", (x * 100).toFixed(2) + "%");
+          card.style.setProperty("--my", (y * 100).toFixed(2) + "%");
+          card.style.setProperty("--tilt-x", ((0.5 - y) * 8).toFixed(2) + "deg");
+          card.style.setProperty("--tilt-y", ((x - 0.5) * 10).toFixed(2) + "deg");
+        }
+
+        Array.prototype.forEach.call(cards, function (card) {
+          card.addEventListener("pointerenter", function (event) {
+            card.classList.add("is-active");
+            updateCard(card, event.clientX, event.clientY);
+          });
+
+          card.addEventListener("pointermove", function (event) {
+            updateCard(card, event.clientX, event.clientY);
+          });
+
+          card.addEventListener("pointerleave", function () {
+            resetCard(card);
+          });
+        });
+      })();
+
+      /* 3. Portfolio videos open in the glass lightbox ------------------- */
+      (function () {
+        var videos = document.querySelectorAll("#portfolio video");
+        var modal = document.getElementById("video-popup");
+        var popupVideo = document.getElementById("video-popup-player");
+        var popupTitle = document.getElementById("video-popup-title");
+        var closeTargets = document.querySelectorAll("[data-close-video-popup]");
+        var body = document.body;
+        var openState = false;
+        var previousOverflow = "";
+        var hideTimer = null;
+        var closeDelayMs = 240;
+
+        if (!videos.length || !modal || !popupVideo || !popupTitle) {
+          return;
+        }
+
+        function humanize(text) {
+          return text.replace(/\.[^/.]+$/, "").replace(/[_-]+/g, " ").replace(/\s+/g, " ").trim();
+        }
+
+        function headingText(el, selector) {
+          var scope = el.closest(selector ? ".brand-group" : ".cat-block");
+          var node = scope ? scope.querySelector(selector || ".commercial-heading") : null;
+          if (!node) return "";
+          // Strip the count pill so only the label survives.
+          var clone = node.cloneNode(true);
+          var pill = clone.querySelector(".cat-count");
+          if (pill) pill.remove();
+          return clone.textContent.trim();
+        }
+
+        function deriveTitle(video) {
+          var figure = video.closest("figure");
+          var figcaption = figure ? figure.querySelector("figcaption") : null;
+          if (figcaption && figcaption.textContent.trim()) {
+            return figcaption.textContent.trim();
+          }
+
+          // Files are numbered (1.mp4, 2.mp4 …), so build the label from
+          // the category and brand headings this clip sits under.
+          var firstSource = video.querySelector("source");
+          var sourcePath = firstSource ? firstSource.getAttribute("src") || "" : video.getAttribute("src") || "";
+          var fileName = (sourcePath.split("/").pop() || "Video").split("#")[0];
+          var number = humanize(fileName);
+
+          var parts = [headingText(video), headingText(video, ".brand-head"), number].filter(Boolean);
+          return parts.join(" · ") || number;
+        }
+
+        function clearPopupVideo() {
+          popupVideo.pause();
+          popupVideo.removeAttribute("src");
+          popupVideo.removeAttribute("poster");
+          while (popupVideo.firstChild) {
+            popupVideo.removeChild(popupVideo.firstChild);
+          }
+          popupVideo.load();
+        }
+
+        function closePopup() {
+          if (!openState) {
+            return;
+          }
+
+          openState = false;
+          modal.classList.remove("is-open");
+          modal.classList.remove("is-portrait");
+          modal.setAttribute("aria-hidden", "true");
+          body.style.overflow = previousOverflow;
+
+          window.clearTimeout(hideTimer);
+          hideTimer = window.setTimeout(function () {
+            modal.hidden = true;
+            clearPopupVideo();
+          }, closeDelayMs);
+        }
+
+        function openFromVideo(video) {
+          var sources = video.querySelectorAll("source");
+
+          window.clearTimeout(hideTimer);
+          clearPopupVideo();
+
+          popupVideo.poster = video.getAttribute("poster") || "";
+
+          if (sources.length) {
+            Array.prototype.forEach.call(sources, function (source) {
+              var clone = document.createElement("source");
+              if (source.getAttribute("src")) {
+                clone.setAttribute("src", source.getAttribute("src"));
+              }
+              if (source.getAttribute("type")) {
+                clone.setAttribute("type", source.getAttribute("type"));
+              }
+              popupVideo.appendChild(clone);
+            });
+          } else if (video.getAttribute("src")) {
+            popupVideo.setAttribute("src", video.getAttribute("src"));
+          }
+
+          // Most clips are 9:16 — reshape the panel before it animates in.
+          // Fall back to the element's own metadata if data-orient is absent.
+          var portrait = video.dataset.orient
+            ? video.dataset.orient === "portrait"
+            : video.videoWidth && video.videoHeight
+              ? video.videoHeight > video.videoWidth
+              : false;
+          modal.classList.toggle("is-portrait", portrait);
+
+          popupTitle.textContent = deriveTitle(video);
+          previousOverflow = body.style.overflow;
+          body.style.overflow = "hidden";
+          modal.hidden = false;
+          modal.setAttribute("aria-hidden", "false");
+
+          requestAnimationFrame(function () {
+            modal.classList.add("is-open");
+          });
+
+          openState = true;
+          popupVideo.currentTime = 0;
+          popupVideo.muted = false;
+
+          var playPromise = popupVideo.play();
+          if (playPromise && typeof playPromise.catch === "function") {
+            playPromise.catch(function () {});
+          }
+        }
+
+        Array.prototype.forEach.call(videos, function (video) {
+          video.addEventListener("play", function () {
+            video.pause();
+            video.currentTime = 0;
+            openFromVideo(video);
+          });
+
+          video.addEventListener("click", function (event) {
+            if (video.paused) {
+              event.preventDefault();
+              openFromVideo(video);
+            }
+          });
+        });
+
+        Array.prototype.forEach.call(closeTargets, function (target) {
+          target.addEventListener("click", function (event) {
+            event.preventDefault();
+            closePopup();
+          });
+        });
+
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closePopup();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>
