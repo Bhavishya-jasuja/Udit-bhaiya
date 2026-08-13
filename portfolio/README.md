@@ -72,15 +72,40 @@ at the top of the script.
 
 ### Current library
 
-| Section | Folder | Content |
-| --- | --- | --- |
-| Show Reel | `real-estate/6.mp4` | the only 16:9 film — auto-picked as the feature |
-| Gastronomy | `gastronomy/` | 38 clips across 7 brand subfolders |
-| Sports Club | `sports/` | 8 clips + 14 key-art images |
-| Real Estate | `real-estate/` | 5 vertical listing cuts |
-| Graphics | `graphics/` | 12 posters, mixed ratios, masonry |
+| Section | Folder | On disk | Shown |
+| --- | --- | --- | --- |
+| Show Reel | `real-estate/6.mp4` | — | the pinned 16:9 feature |
+| Cafes & Restaurants | `gastronomy/` | 38 clips / 7 brands | 2 per brand |
+| Sports Club | `sports/` | 8 clips + 14 key art | 2 + 2 |
+| Real Estate | `real-estate/` | 6 films | 2 |
+| Education | `education/` | 2 films | 2 |
+| Pharmacy | `pharmacy/` | 1 film | 1 |
+| Graphics | `graphics/` | 12 posters | all (masonry) |
 
 **Almost everything is vertical 9:16**, so the galleries are built vertical-first.
+
+### Three settings at the top of the script
+
+```js
+const MAX_PER_GROUP  = 2;                  // clips shown per client folder
+const FEATURE_REL    = 'real-estate/6.mp4' // which clip anchors the Show Reel
+const COUNT_OVERRIDES = { gastronomy: '15 edits · 7 brands' }
+```
+
+`MAX_PER_GROUP` caps the *display* only — every file stays on disk. `COUNT_OVERRIDES`
+sets a headline pill independently of how many tiles are visible, so a section can say
+"15 edits" while showing a curated 2 per brand.
+
+### Two things the script checks for you
+
+**HEVC/H.265 clips are skipped.** Chrome and Firefox cannot decode them and they render
+as black tiles. The script parses the MP4 box tree to read the real codec (a substring
+search for `hvc1` false-positives constantly on large files) and prints a warning naming
+any file it dropped. Re-export those as **H.264/AAC** and rerun.
+
+**Rotated phone footage is corrected.** iPhone clips are often stored landscape with a
+90° rotation matrix in `tkhd`. The script reads that matrix and swaps the dimensions, so
+the clip is classified portrait rather than being laid out as a wide tile.
 
 ---
 
@@ -126,23 +151,27 @@ affordances), and a print stylesheet.
 
 ---
 
-## What to replace before launch
+## Client details in use
+
+| Detail | Value |
+| --- | --- |
+| Brand | The Marketing Wonders |
+| Founder / portrait | Mansi — `assets/img/portrait.jpg` |
+| WhatsApp | `https://wa.me/919548996834` (every WhatsApp icon and CTA) |
+| Email | marketingwonders2503@gmail.com (contact block + form action) |
+
+Social is **Instagram + WhatsApp only**; all other networks were removed.
+
+## Still to replace before launch
 
 | Placeholder | Where |
 | --- | --- |
-| `Client Name` | `<title>`, meta, JSON-LD, header, hero, footer |
-| `hello@example.com` | contact block, form `action` |
+| `https://www.instagram.com/` | needs the real Instagram handle — 3 links |
 | `https://example.com/` | canonical, OG tags, JSON-LD |
-| `#` in `href="#"` | Instagram / LinkedIn / profile links |
-| `img/portrait.svg` | hero portrait — replace with a real 4:5 photo |
-| `img/tool-1…5.svg` | tool chips |
 | `social-preview.svg` | export a real 1200×630 **JPG** |
 
-**The Journey section has no real content** — it still shows 12 copies of `poster.svg`.
-Either fill it in or delete `<section id="journey">` and its nav link.
-
-**Contact form** uses [FormSubmit](https://formsubmit.co) — no backend. Put the real
-address in the form `action`, then submit once from the live domain to activate it.
+**Contact form** uses [FormSubmit](https://formsubmit.co) — no backend. Submit it once
+from the live domain to activate delivery to the Gmail address.
 
 ---
 
@@ -151,5 +180,12 @@ address in the form `action`, then submit once from the live domain to activate 
 Static folder, no build command. The repo root has a `vercel.json` pointing Vercel at this
 subfolder, so a plain Git push deploys it.
 
-`assets/media/` is 195MB. Fine for Vercel/Netlify; heavy for GitHub. If the repo gets
-unwieldy, move the videos to a CDN or Vimeo and update the `<source>` tags.
+`assets/media/` is **402MB**, of which only ~261MB is actually referenced — the rest are
+the clips held back by `MAX_PER_GROUP`. Options if the deploy gets heavy:
+
+- delete the unused files (the script only emits what it finds), or
+- keep them locally and add `assets/media/` to `.gitignore`, uploading media separately, or
+- move the large clips to a CDN/Vimeo and point the `<source>` tags there.
+
+Vercel handles this size, but pushing 400MB through GitHub is slow and close to the point
+where Git LFS becomes worthwhile.

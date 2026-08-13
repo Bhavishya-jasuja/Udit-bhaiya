@@ -50,17 +50,59 @@
   gap: var(--space-4);
 }
 
-.brand__name {
+/* --------------------------------------------------------------------------
+   Wordmark
+   "The" in script, "Marketing" in display caps, "Wonders" in the accent —
+   one lockup reused in the header, hero and footer via a size modifier.
+   -------------------------------------------------------------------------- */
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.32em;
   margin: 0;
   font-family: var(--font-display);
-  font-size: 0.95rem;
-  letter-spacing: 0.13em;
+  font-size: var(--logo-size, 1rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
+  color: var(--ink);
 }
 
-.brand__name span {
+.logo__the {
+  font-family: var(--font-script);
+  font-size: 1.5em;
+  letter-spacing: 0;
+  text-transform: none;
   color: var(--accent);
+  transform: rotate(-8deg);
+  transform-origin: center;
+}
+
+.logo__marketing {
+  font-weight: 700;
+}
+
+.logo__wonders {
+  font-weight: 700;
+  color: var(--accent);
+  /* Subtle shimmer so the mark reads as a logo, not just bold text */
+  background: linear-gradient(92deg, var(--accent) 0%, #9a6cf5 45%, var(--accent-strong) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Header instance */
+.site-header .logo {
+  --logo-size: 0.82rem;
+}
+
+@media (min-width: 560px) {
+  .site-header .logo {
+    --logo-size: 0.95rem;
+  }
 }
 
 /* ---- Hamburger ---- */
@@ -229,37 +271,35 @@
   line-height: 1.8;
 }
 
-.hero-tools {
+/* Primary call to action — WhatsApp */
+.btn-whatsapp {
   margin-top: var(--space-5);
-}
-
-.hero-tools__list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-}
-
-.hero-tool {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--r-pill);
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  background: rgba(16, 9, 32, 0.9);
-  box-shadow: var(--shadow-sm);
-  transition: transform var(--t-fast) var(--ease);
+  gap: var(--space-2);
+  min-height: 50px;
+  padding: 0 var(--space-5);
+  border-radius: var(--r-pill);
+  background: #25d366;
+  color: #06301a;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.32);
+  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
 }
 
-.hero-tool:hover {
+.btn-whatsapp:hover {
   transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(37, 211, 102, 0.4);
 }
 
-.hero-tool img {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
+.btn-whatsapp svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+  flex: none;
 }
 
 .hero__meta {
@@ -322,7 +362,10 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center top;
-  border-radius: var(--r-lg);
+  /* The source photo is a JPEG with a baked-in white background (no alpha).
+     multiply drops white to the page colour so the cut-out sits on the
+     gradient instead of inside a white card. */
+  mix-blend-mode: multiply;
 }
 
 /* Decorative script word — hidden on phones where there is no room for it */
@@ -392,7 +435,11 @@
   border-top: 1px solid var(--line);
   display: flex;
   flex-direction: column;
-  gap: var(--space-2);
+  gap: var(--space-3);
   font-size: var(--fs-sm);
   color: var(--muted);
+}
+
+.logo--footer {
+  --logo-size: 0.9rem;
 }

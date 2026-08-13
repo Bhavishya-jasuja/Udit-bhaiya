@@ -53,12 +53,22 @@
   box-shadow: var(--shadow-lg);
 }
 
-.showreel-frame video,
+/* No forced aspect-ratio: the width/height attributes give the file's real
+   intrinsic ratio, so the frame sizes itself to the film exactly and there is
+   never a letterbox — whatever shape the feature video happens to be. */
+.showreel-frame video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 0;
+}
+
+/* An iframe has no intrinsic size, so an embed still needs a declared ratio. */
 .showreel-frame iframe {
+  display: block;
   width: 100%;
   aspect-ratio: 16 / 9;
   border: 0;
-  background: #000;
 }
 
 .showreel-caption {
@@ -436,7 +446,10 @@
 
 .video-popup__panel {
   position: relative;
-  width: min(1100px, 100%);
+  /* width:auto lets the panel shrink-wrap the clip, so the glass never extends
+     past the picture and no letterbox appears inside it. */
+  width: auto;
+  max-width: min(1100px, 100%);
   padding: var(--space-2);
   border-radius: var(--r-lg);
   border: 1px solid rgba(255, 255, 255, 0.28);
@@ -454,25 +467,25 @@
 
 /* Portrait clips get a narrow panel instead of being letterboxed */
 .video-popup.is-portrait .video-popup__panel {
-  width: min(420px, 100%);
+  max-width: min(420px, 100%);
 }
 
 .video-popup__frame {
   overflow: hidden;
   border-radius: var(--r-sm);
   background: #000;
+  line-height: 0;
 }
 
+/* auto width AND height let the intrinsic ratio survive both clamps, so the
+   box always matches the picture exactly — no bars on any side. */
 .video-popup__video {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
   max-height: 74svh;
   background: #000;
-}
-
-.video-popup.is-portrait .video-popup__video {
-  aspect-ratio: 9 / 16;
-  object-fit: contain;
 }
 
 .video-popup__title {
@@ -531,6 +544,17 @@
   margin-top: var(--space-3);
   max-width: 60ch;
   color: var(--muted);
+}
+
+.inline-link {
+  color: var(--accent-strong);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.inline-link:hover {
+  color: var(--accent);
 }
 
 .contact-grid {

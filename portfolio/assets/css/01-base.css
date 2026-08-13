@@ -60,7 +60,12 @@ iframe {
   max-width: 100%;
 }
 
-img {
+/* The width/height attributes on <img>/<video> are presentational hints. They
+   are good for reserving space, but if no author rule sets a height they win
+   over `aspect-ratio` and stretch the box — which letterboxes the media inside
+   it. Setting height:auto here lets aspect-ratio drive the box everywhere. */
+img,
+video {
   height: auto;
 }
 
