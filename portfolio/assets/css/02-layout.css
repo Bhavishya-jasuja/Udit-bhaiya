@@ -271,28 +271,32 @@
   line-height: 1.8;
 }
 
-/* Primary call to action — WhatsApp */
+/* Primary call to action.
+   Uses the site accent rather than WhatsApp green — the brand green clashed
+   badly with the violet palette. The icon still identifies the channel. */
 .btn-whatsapp {
   margin-top: var(--space-5);
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 50px;
+  min-height: 52px;
   padding: 0 var(--space-5);
   border-radius: var(--r-pill);
-  background: #25d366;
-  color: #06301a;
-  font-size: 0.78rem;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.76rem;
   font-weight: 800;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
-  box-shadow: 0 10px 22px rgba(37, 211, 102, 0.32);
-  transition: transform var(--t-fast) var(--ease), box-shadow var(--t-fast) var(--ease);
+  box-shadow: var(--shadow-md);
+  transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease),
+    box-shadow var(--t-fast) var(--ease);
 }
 
 .btn-whatsapp:hover {
+  background: var(--accent);
   transform: translateY(-2px);
-  box-shadow: 0 14px 28px rgba(37, 211, 102, 0.4);
+  box-shadow: 0 16px 30px rgba(var(--accent-rgb), 0.34);
 }
 
 .btn-whatsapp svg {
@@ -340,32 +344,18 @@
   max-width: 420px;
 }
 
-.hero__portrait::before {
-  content: "";
-  position: absolute;
-  inset: 14% 8% 2% 16%;
-  border-radius: 50% 50% 36% 36%;
-  background: radial-gradient(
-    circle at 30% 26%,
-    rgba(var(--accent-rgb), 0.36),
-    rgba(44, 16, 96, 0.2) 48%,
-    transparent 78%
-  );
-  filter: blur(10px);
-  z-index: 0;
-}
-
 .hero__portrait img {
   position: relative;
   z-index: 2;
   width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center top;
-  /* The source photo is a JPEG with a baked-in white background (no alpha).
-     multiply drops white to the page colour so the cut-out sits on the
-     gradient instead of inside a white card. */
-  mix-blend-mode: multiply;
+  /* Transparent PNG cut-out: no blend mode and no glow behind it, so the
+     face stays sharp and true to the original photo. */
+  height: auto;
+  object-fit: contain;
+  /* The photo is cropped at the waist; fading the last few percent stops it
+     ending on a hard horizontal line. */
+  -webkit-mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
 }
 
 /* Decorative script word — hidden on phones where there is no room for it */

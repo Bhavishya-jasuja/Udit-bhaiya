@@ -41,17 +41,19 @@ const LABELS = {
 };
 
 const NOTES = {
-  gastronomy: 'Seven cafe and restaurant brands, each with its own run of vertical edits.',
-  sports: 'A full club package — matchday video cutdowns plus the campaign key art beside them.',
-  'real-estate': 'Vertical listing cuts. The long-form landscape film sits up in the show reel.',
-  graphics: 'Poster and campaign design in mixed formats.',
-  education: 'Course launches and student stories cut for admissions campaigns.',
-  pharmacy: 'Product and brand storytelling for healthcare and wellness.'
+  gastronomy: 'Seven cafe and restaurant brands we work with regularly.',
+  sports: 'Match day videos for the club, along with the posters that go with them.',
+  'real-estate': 'Property videos for agents. The full-length film is at the top of this page.',
+  graphics: 'Posters, offer creatives and social media designs.',
+  education: 'Videos for schools and coaching institutes.',
+  pharmacy: 'Store and product videos for pharmacy brands.'
 };
 
-/* Show only a couple of clips per client — the gallery is a highlight reel,
-   not the full archive. Set to Infinity to show everything again. */
-const MAX_PER_GROUP = 2;
+/* How many clips to show per client folder. Set to Infinity to show all. */
+const MAX_PER_GROUP = 4;
+
+/* Order the categories appear in the Portfolio section. */
+const CATEGORY_ORDER = ['education', 'pharmacy', 'gastronomy', 'sports', 'real-estate', 'graphics'];
 
 /* Which clip anchors the Show Reel. Pinned rather than auto-picked so adding
    another landscape film later cannot silently move the feature. Set to null
@@ -62,7 +64,7 @@ const FEATURE_REL = 'real-estate/6.mp4';
    is larger than the curated selection on the page, so they are set here
    rather than derived from the number of visible tiles. */
 const COUNT_OVERRIDES = {
-  gastronomy: '15 edits · 7 brands'
+  gastronomy: '15 videos, 7 brands'
 };
 
 const titleCase = (s) =>
@@ -329,8 +331,8 @@ const showreel = `      <section class="section" id="showreel">
         <p class="section__script">show reel</p>
         <h2 class="section__title" data-reveal>Show Reel</h2>
         <p class="section__lead" data-reveal>
-          The feature film below is the long-form cut. Everything else is built vertical-first for social and
-          in-venue screens — browse it all in the portfolio.
+          This is our longest film. Most of our other work is made for phones, so you will find it in the
+          section below.
         </p>
 
         <div class="showreel-grid is-single">
@@ -344,45 +346,45 @@ const showreel = `      <section class="section" id="showreel">
               </video>
             </div>
             <div class="showreel-caption">
-              <h3>${label(dirOf(feature))} Feature</h3>
-              <p>Full-length ${feature.w}&times;${feature.h} cut — the anchor piece of the reel.</p>
+              <h3>Property Film</h3>
+              <p>A full-length video shot and edited for a property listing.</p>
             </div>
           </article>
         </div>
 
         <div class="whatido-block" data-reveal>
           <h3 class="whatido-title">What We Do</h3>
-          <p class="whatido-intro">Six working verticals — social video and design, built end to end.</p>
+          <p class="whatido-intro">We work with six kinds of businesses.</p>
           <div class="whatido-grid">
+            <article class="whatido-card">
+              <span class="whatido-meta">${plural(inDir('education').length, 'video')}</span>
+              <h4>Education</h4>
+              <p>Videos for schools and coaching institutes. Useful during admission season and for showing parents around the campus.</p>
+            </article>
+            <article class="whatido-card">
+              <span class="whatido-meta">${plural(inDir('pharmacy').length, 'video')}</span>
+              <h4>Pharmacy</h4>
+              <p>Store and product videos for pharmacy brands. We keep these simple and easy to follow.</p>
+            </article>
             <article class="whatido-card">
               <span class="whatido-meta">${COUNT_OVERRIDES.gastronomy}</span>
               <h4>Cafes &amp; Restaurants</h4>
-              <p>Vertical food and hospitality edits for cafes, restaurants, and resorts — cut for reels, stories, and in-venue screens.</p>
+              <p>Food and interior videos for cafes, restaurants and resorts. Cut for Instagram reels and stories.</p>
             </article>
             <article class="whatido-card">
-              <span class="whatido-meta">${inDir('sports/videos').length} edits · ${inDir('sports/graphics').length} graphics</span>
+              <span class="whatido-meta">${inDir('sports/videos').length} videos, ${inDir('sports/graphics').length} designs</span>
               <h4>Sports Club</h4>
-              <p>Matchday cutdowns and campaign key art for club social channels, delivered as one video and design package.</p>
+              <p>Match day videos and poster designs for sports clubs. We handle the filming and the graphics together.</p>
             </article>
             <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('real-estate').length, "film")}</span>
+              <span class="whatido-meta">${plural(inDir('real-estate').length, 'video')}</span>
               <h4>Real Estate</h4>
-              <p>Property walkthroughs and listing films in both long-form landscape and vertical social cuts.</p>
+              <p>Property videos for agents and builders. One full-length version, plus short cuts for social media.</p>
             </article>
             <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('education').length, "film")}</span>
-              <h4>Education</h4>
-              <p>Course launches, campus tours, and student stories cut for admissions and enrolment campaigns.</p>
-            </article>
-            <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('pharmacy').length, "film")}</span>
-              <h4>Pharmacy</h4>
-              <p>Product and brand storytelling for healthcare and wellness, kept clear, calm, and compliant.</p>
-            </article>
-            <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('graphics').length, "piece")}</span>
-              <h4>Graphics &amp; Key Art</h4>
-              <p>Static design work — posters, campaign key art, and social templates matching the motion work.</p>
+              <span class="whatido-meta">${plural(inDir('graphics').length, 'design')}</span>
+              <h4>Graphics</h4>
+              <p>Posters, offer creatives and social media templates, designed to match the video work.</p>
             </article>
           </div>
         </div>
@@ -415,9 +417,9 @@ ${items.map((it, n) => tile(it, [label(brand), `${n + 1}`], 14)).join('\n')}
   })
   .join('\n\n');
 
-// Sports — videos then key art
+// Sports — videos are curated; key art shows the complete set
 const sportsVideos = pick('sports/videos');
-const sportsGraphics = pick('sports/graphics');
+const sportsGraphics = inDir('sports/graphics');
 
 const sportsBody = `          <div class="brand-group">
             <h4 class="brand-head">Video</h4>
@@ -457,54 +459,29 @@ const graphicsBody = `          <div class="masonry">
 ${graphics.map((it, n) => masonryItem(it, `Graphic design piece ${n + 1}`, 12)).join('\n')}
           </div>`;
 
+/* Each category is built once, then emitted in CATEGORY_ORDER. Reordering the
+   page is a one-line change to that array rather than moving template blocks. */
+const CATEGORY_BLOCKS = {
+  education: { count: plural(education.length, 'video'), body: educationBody },
+  pharmacy: { count: plural(pharmacy.length, 'video'), body: pharmacyBody },
+  gastronomy: { count: `${under('gastronomy').length} videos`, body: gastroBody },
+  sports: { count: plural(sportsVideos.length + sportsGraphics.length, 'piece'), body: sportsBody },
+  'real-estate': { count: plural(realEstate.length, 'video'), body: realEstateBody },
+  graphics: { count: plural(graphics.length, 'design'), body: graphicsBody }
+};
+
+const orderedBlocks = CATEGORY_ORDER.filter((id) => CATEGORY_BLOCKS[id])
+  .map((id) => categoryBlock({ id, ...CATEGORY_BLOCKS[id], note: NOTES[id] }))
+  .join('\n\n');
+
 const portfolio = `      <section class="section" id="portfolio">
-        <p class="section__script">selected work</p>
-        <h2 class="section__title" data-reveal>A shelf of finished work.</h2>
+        <p class="section__script">our work</p>
+        <h2 class="section__title" data-reveal>Our Work</h2>
         <p class="section__lead" data-reveal>
-          Selected work across six verticals. Tap any tile to open it full size.
+          A selection of what we have made for our clients. Tap any video to play it.
         </p>
 
-${categoryBlock({
-  id: 'gastronomy',
-  count: `${under('gastronomy').length} edits`,
-  note: NOTES.gastronomy,
-  body: gastroBody
-})}
-
-${categoryBlock({
-  id: 'sports',
-  count: plural(sportsVideos.length + sportsGraphics.length, "piece"),
-  note: NOTES.sports,
-  body: sportsBody
-})}
-
-${categoryBlock({
-  id: 'real-estate',
-  count: plural(realEstate.length, "vertical cut"),
-  note: NOTES['real-estate'],
-  body: realEstateBody
-})}
-
-${categoryBlock({
-  id: 'education',
-  count: plural(education.length, "film"),
-  note: NOTES.education,
-  body: educationBody
-})}
-
-${categoryBlock({
-  id: 'pharmacy',
-  count: plural(pharmacy.length, "film"),
-  note: NOTES.pharmacy,
-  body: pharmacyBody
-})}
-
-${categoryBlock({
-  id: 'graphics',
-  count: plural(graphics.length, "piece"),
-  note: NOTES.graphics,
-  body: graphicsBody
-})}
+${orderedBlocks}
       </section>`;
 
 /* --------------------------------------------------------------------------
