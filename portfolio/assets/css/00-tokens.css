@@ -1,0 +1,89 @@
+/* ==========================================================================
+   Design tokens
+   The single source of truth for colour, type, spacing and elevation.
+   Change the accent here and the whole site retunes.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand ---- */
+  --accent: #6c3be0;
+  --accent-strong: #5326bd;
+  --accent-soft: #e6dcff;
+  /* Keep in sync with --accent. Used for every translucent tint. */
+  --accent-rgb: 108, 59, 224;
+
+  /* ---- Neutrals ---- */
+  --ink: #131017;
+  --ink-rgb: 19, 16, 23;
+  --muted: #5a5566;
+  --muted-strong: #423d4d;
+  --line: rgba(19, 16, 23, 0.14);
+  --line-strong: rgba(19, 16, 23, 0.22);
+
+  --bg: #f0eff1;
+  --bg-alt: #e9e8ec;
+  --surface: rgba(255, 255, 255, 0.84);
+  --surface-glass: rgba(255, 255, 255, 0.3);
+
+  /* ---- Type ---- */
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Manrope", "Segoe UI", sans-serif;
+  --font-script: "Caveat", cursive;
+
+  /* Fluid type scale: min at 360px, max at 1440px */
+  --fs-xs: 0.7rem;
+  --fs-sm: 0.8rem;
+  --fs-base: clamp(0.94rem, 0.9rem + 0.2vw, 1.05rem);
+  --fs-lg: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  --fs-xl: clamp(1.35rem, 1.1rem + 1.2vw, 2rem);
+  --fs-2xl: clamp(1.8rem, 1.2rem + 2.6vw, 3.4rem);
+  /* Big section headings — deliberately capped so they never overflow phones */
+  --fs-display: clamp(2.1rem, 1rem + 7vw, 8rem);
+
+  /* ---- Spacing scale ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  /* Vertical rhythm between major sections */
+  --section-gap: clamp(3.5rem, 9vw, 8rem);
+
+  /* ---- Shell ---- */
+  --shell: min(1220px, 100% - 2rem);
+  --header-h: 60px;
+
+  /* ---- Radii ---- */
+  --r-sm: 12px;
+  --r-md: 18px;
+  --r-lg: 22px;
+  --r-xl: 26px;
+  --r-pill: 999px;
+
+  /* ---- Elevation ---- */
+  --shadow-sm: 0 8px 18px rgba(16, 11, 30, 0.12);
+  --shadow-md: 0 12px 26px rgba(18, 12, 34, 0.14);
+  --shadow-lg: 0 22px 46px rgba(18, 12, 40, 0.18);
+  --shadow-xl: 0 36px 70px rgba(14, 10, 34, 0.36);
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 0.18s;
+  --t-med: 0.28s;
+  --t-slow: 0.55s;
+
+  /* ---- Layers ---- */
+  --z-header: 60;
+  --z-nav-panel: 70;
+  --z-modal: 100;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --shell: min(1220px, 100% - 2.5rem);
+    --header-h: 68px;
+  }
+}

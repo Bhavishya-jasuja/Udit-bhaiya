@@ -1,0 +1,398 @@
+/* ==========================================================================
+   Layout — shell, header + mobile nav, hero, footer
+   Mobile-first: base rules target phones, min-width queries scale up.
+   ========================================================================== */
+
+.shell,
+.page,
+.site-footer {
+  width: var(--shell);
+  margin-inline: auto;
+}
+
+.page {
+  padding-block: var(--space-4) var(--space-8);
+}
+
+.section {
+  position: relative;
+  margin-top: var(--section-gap);
+  /* Anchors land below the sticky header */
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+/* --------------------------------------------------------------------------
+   Header
+   -------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  min-height: var(--header-h);
+  display: flex;
+  align-items: center;
+  /* Deliberately NO backdrop-filter here.
+     A filter/backdrop-filter makes an element the containing block for its
+     position:fixed descendants — that would trap the mobile nav drawer inside
+     the header instead of the viewport. The blur is re-added at >=1024px in
+     04-responsive.css, where the drawer no longer exists. */
+  background: var(--bg);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.08);
+}
+
+.header-inner {
+  width: var(--shell);
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.brand__name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.brand__name span {
+  color: var(--accent);
+}
+
+/* ---- Hamburger ---- */
+
+.nav-toggle {
+  --bar: 2px;
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  transition: border-color var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+
+.nav-toggle:hover {
+  border-color: rgba(var(--accent-rgb), 0.4);
+}
+
+.nav-toggle__box {
+  position: relative;
+  width: 20px;
+  height: 14px;
+}
+
+.nav-toggle__box span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: var(--bar);
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform var(--t-med) var(--ease), opacity var(--t-fast) var(--ease);
+}
+
+.nav-toggle__box span:nth-child(1) { top: 0; }
+.nav-toggle__box span:nth-child(2) { top: 6px; }
+.nav-toggle__box span:nth-child(3) { top: 12px; }
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__box span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__box span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__box span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ---- Nav panel (slide-in on mobile) ---- */
+
+.nav-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgba(var(--ink-rgb), 0.45);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-med) var(--ease);
+}
+
+.nav-backdrop.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Viewport-sized clipping frame.
+   The drawer parks off-screen at translateX(100%); a fixed element is NOT
+   clipped by body{overflow-x:hidden}, so without this wrapper it adds ~320px
+   of horizontal scroll to the document. The wrapper is exactly the viewport
+   and clips it. At >=1024px it becomes display:contents and disappears. */
+.nav-drawer {
+  position: fixed;
+  inset: 0;
+  z-index: calc(var(--z-nav-panel) + 1);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.topnav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  /* Above the backdrop, which is its sibling inside this same context */
+  z-index: 1;
+  pointer-events: auto;
+  width: min(320px, 82vw);
+  height: 100%;
+  padding: calc(var(--header-h) + var(--space-5)) var(--space-5) var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  background: var(--bg);
+  border-left: 1px solid var(--line);
+  box-shadow: var(--shadow-xl);
+  transform: translateX(100%);
+  transition: transform var(--t-med) var(--ease);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.topnav.is-open {
+  transform: translateX(0);
+}
+
+.topnav a {
+  padding: var(--space-3) var(--space-2);
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+  border-bottom: 1px solid rgba(var(--ink-rgb), 0.07);
+  transition: color var(--t-fast) var(--ease);
+}
+
+.topnav a:hover,
+.topnav a:focus-visible,
+.topnav a[aria-current="true"] {
+  color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   Hero
+   -------------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  display: grid;
+  gap: var(--space-6);
+  padding-top: var(--space-5);
+}
+
+.hero__kicker {
+  font-size: var(--fs-sm);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+}
+
+.hero__name {
+  margin: var(--space-2) 0 0;
+  font-size: var(--fs-2xl);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.hero__name span {
+  color: var(--accent);
+}
+
+.hero__copy {
+  margin-top: var(--space-4);
+  max-width: 52ch;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.hero-tools {
+  margin-top: var(--space-5);
+}
+
+.hero-tools__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.hero-tool {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(16, 9, 32, 0.9);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-fast) var(--ease);
+}
+
+.hero-tool:hover {
+  transform: translateY(-2px);
+}
+
+.hero-tool img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.hero__meta {
+  margin-top: var(--space-5);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+}
+
+.hero__meta-item {
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line-strong);
+}
+
+.hero__meta-item strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-xl);
+  line-height: 1;
+}
+
+.hero__meta-item span {
+  margin-top: var(--space-1);
+  display: block;
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---- Portrait ---- */
+
+.hero__portrait {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  max-width: 420px;
+}
+
+.hero__portrait::before {
+  content: "";
+  position: absolute;
+  inset: 14% 8% 2% 16%;
+  border-radius: 50% 50% 36% 36%;
+  background: radial-gradient(
+    circle at 30% 26%,
+    rgba(var(--accent-rgb), 0.36),
+    rgba(44, 16, 96, 0.2) 48%,
+    transparent 78%
+  );
+  filter: blur(10px);
+  z-index: 0;
+}
+
+.hero__portrait img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--r-lg);
+}
+
+/* Decorative script word — hidden on phones where there is no room for it */
+.hero__image-subtitle {
+  display: none;
+  margin: 0;
+  position: absolute;
+  left: -32%;
+  top: 66%;
+  z-index: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  font-family: var(--font-script);
+  font-size: clamp(2rem, 5.4vw, 4.6rem);
+  line-height: 1;
+  color: rgba(var(--accent-rgb), 0.5);
+}
+
+.hero-social {
+  position: relative;
+  z-index: 3;
+  margin-top: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.hero-social a {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-pill);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow-sm);
+  transition: color var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+.hero-social a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.hero-social svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.hero-social-text {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.site-footer {
+  margin-top: var(--space-7);
+  padding-block: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--muted);
+}

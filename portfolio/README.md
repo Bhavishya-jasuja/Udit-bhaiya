@@ -1,21 +1,19 @@
 # Portfolio Site
 
-A single-file static portfolio site. Same stack and structure as the reference site
-(`athulrajan.com`): plain HTML, inline CSS, vanilla JavaScript — **no framework, no build
-step, no npm install**. Open `index.html` and it runs.
+Static portfolio site — plain HTML, CSS and vanilla ES modules. No framework, no
+bundler, no `npm install`. Mobile-first and responsive from 320px up.
 
-Accent colour is violet (`#6c3be0`) instead of the reference blue.
+Accent colour is violet (`#6c3be0`).
 
 ---
 
-## Run it
+## Run it locally
 
-Just double-click `index.html`.
+The JavaScript uses ES modules, which browsers refuse to load over `file://`.
+**You must serve it over HTTP** — opening `index.html` by double-clicking will load the
+styles but not the scripts.
 
-For a proper local server (needed if you want the video lightbox to load real `.mp4`
-files without file:// restrictions):
-
-```powershell
+```bash
 npx serve .
 # or
 python -m http.server 8000
@@ -23,149 +21,135 @@ python -m http.server 8000
 
 ---
 
-## Files
+## Structure
 
 ```
 portfolio/
-  index.html          <- everything: markup, styles, scripts
+  index.html                  markup only — no inline CSS or JS
   assets/
-    img/              <- portrait + tool-chip placeholders (still to replace)
-    media/            <- the real work library, 78 files / 195MB
-      gastronomy/     <- 38 vertical edits across 7 brand folders
-      sports/
-        videos/       <- 8 vertical edits
-        graphics/     <- 14 key-art JPGs (4:5)
-      real-estate/    <- 6 films (5 vertical + 1 landscape feature)
-      graphics/       <- 12 mixed-ratio design pieces
-    fonts/display/    <- optional display font for the hero watermark
+    css/
+      00-tokens.css           colour, type scale, spacing, radii, shadows
+      01-base.css             reset, document defaults, a11y primitives
+      02-layout.css           shell, header + nav drawer, hero, footer
+      03-components.css       cards, galleries, lightbox, forms
+      04-responsive.css       all media queries, mobile-first
+    js/
+      main.js                 entry point; boots each module in isolation
+      modules/
+        nav.js                mobile drawer, focus trap, scroll lock
+        reveal.js             scroll-reveal via IntersectionObserver
+        tilt.js               pointer tilt on the "What I Do" cards
+        lazy-video.js         defers video metadata until near the viewport
+        lightbox.js           full-size player, focus management
+        scrollspy.js          highlights the current section in the nav
+    img/                      portrait + tool-chip placeholders
+    media/                    the work library, 78 files / 195MB
+  tools/
+    build-gallery.js          regenerates the gallery markup from assets/media/
   README.md
 ```
 
-## The media library
-
-Pulled from the four shared Drive folders and wired into the page:
-
-| Section | Source folder | Content |
-| --- | --- | --- |
-| Show Reel | `real-estate/6.mp4` | the only 16:9 film — used as the anchor feature |
-| Gastronomy | Gastronomy Showcase | 38 clips, grouped under 7 brand headings |
-| Sports Club | Portfolio for Sports Club | 8 clips + 14 key-art images |
-| Real Estate | Real Estate | 5 vertical listing cuts |
-| Graphics | Graphics | 12 posters in a mixed-ratio masonry |
-
-**Almost everything is vertical 9:16** (720×1280 / 1080×1920), so the grids are built
-vertical-first rather than the 16:9 layout the reference site uses.
-
-### Video posters
-
-There are no separate poster images. Each `<source>` ends in `#t=0.1`, which makes the
-browser seek to 0.1s and paint that frame as the thumbnail — no extra files, no ffmpeg.
-If you later want designed thumbnails, add `poster="..."` to each `<video>`.
-
-### Renaming or adding clips
-
-Files are numbered per folder (`1.mp4`, `2.mp4` …). Because the names carry no meaning,
-the lightbox builds its caption from the surrounding headings instead — e.g.
-*Gastronomy · Sandburgs · 5*. Add a `<figcaption>` to any `<figure>` to override that.
+The CSS files are loaded in numeric order and that order matters — later files rely on
+being able to override earlier ones. Keep the numbering when adding a file.
 
 ---
 
-## What to swap in
+## Adding or changing media
 
-### 1. Colours — one place
+Drop files into the right folder under `assets/media/`, then run:
 
-All colour comes from the CSS variables at the top of the `<style>` block in
-`index.html`:
-
-```css
-:root {
-  --accent:        #6c3be0;   /* main violet */
-  --accent-strong: #5326bd;   /* hover / pressed */
-  --accent-soft:   #e6dcff;
-  --accent-rgb:    108, 59, 224;  /* keep in sync with --accent */
-  --ink:           #131017;
-  --muted:         #5a5566;
-}
+```bash
+node tools/build-gallery.js
 ```
 
-To retune the whole site, change `--accent` **and** `--accent-rgb` (the RGB triplet feeds
-every translucent glow, tint, and focus ring). Nothing else needs touching.
+It scans the folder tree, reads each file's real dimensions straight from the MP4/JPEG
+headers (no ffmpeg needed), and rewrites the Showreel and Portfolio sections of
+`index.html` between the `<!-- GENERATED:… -->` markers. Everything outside those markers
+is yours to edit freely; the script never touches it.
 
-### 2. Text
+Folder names become headings. To give a folder a nicer label, add it to the `LABELS` map
+at the top of the script.
 
-Search `index.html` for these and replace:
+### Current library
+
+| Section | Folder | Content |
+| --- | --- | --- |
+| Show Reel | `real-estate/6.mp4` | the only 16:9 film — auto-picked as the feature |
+| Gastronomy | `gastronomy/` | 38 clips across 7 brand subfolders |
+| Sports Club | `sports/` | 8 clips + 14 key-art images |
+| Real Estate | `real-estate/` | 5 vertical listing cuts |
+| Graphics | `graphics/` | 12 posters, mixed ratios, masonry |
+
+**Almost everything is vertical 9:16**, so the galleries are built vertical-first.
+
+---
+
+## How the tricky parts work
+
+**Video thumbnails without poster images.** Each `<source>` ends in `#t=0.1`, so the
+browser seeks to 0.1s and paints that frame. No separate poster files, no ffmpeg.
+
+**Videos don't blow up mobile data.** All 51 gallery clips ship with `preload="none"`.
+`lazy-video.js` upgrades a clip to `preload="metadata"` only once it is within 300px of
+the viewport — a phone pulls a handful of thumbnails instead of 195MB. It also bails out
+entirely when the browser reports `navigator.connection.saveData`.
+
+**Tiles are thumbnails, not players.** Native video controls shrink to unusable on a
+phone, so gallery tiles hide them and put one full-size button over the whole tile. That
+button opens the lightbox, which reshapes to 9:16 for portrait clips instead of
+letterboxing them. Captions are built from the surrounding headings
+(*Gastronomy · Sandburgs · 5*) because the files are just numbered.
+
+**Two CSS gotchas worth knowing before you edit** — both are commented in the source:
+
+1. `.site-header` must not have `backdrop-filter` below 1024px. A filter makes an element
+   the containing block for its `position: fixed` descendants, which traps the nav drawer
+   inside the header. The blur is added back at ≥1024px where the drawer doesn't exist.
+2. The drawer sits inside `.nav-drawer`, a viewport-sized `overflow: hidden` frame. Parked
+   at `translateX(100%)`, a fixed element is *not* clipped by `body { overflow-x: hidden }`
+   and would add ~320px of horizontal scroll.
+
+---
+
+## Responsive behaviour
+
+| Width | Nav | Gallery | Masonry | Hero |
+| --- | --- | --- | --- | --- |
+| < 560px | drawer | 2 cols | 2 cols | stacked |
+| 560–767 | drawer | 3 cols | 2 cols | stacked |
+| 768–1023 | drawer | 3 cols | 3 cols | stacked |
+| 1024–1279 | inline | 4 cols | 4 cols | side-by-side |
+| ≥ 1280 | inline | 5 cols | 4 cols | side-by-side |
+
+Also handled: landscape phones, `prefers-reduced-motion`, `hover: none` (no hover-only
+affordances), and a print stylesheet.
+
+---
+
+## What to replace before launch
 
 | Placeholder | Where |
 | --- | --- |
-| `Client Name` | `<title>`, meta tags, JSON-LD, header brand, hero kicker, footer |
-| `hello@example.com` | contact block, form `action`, footer |
+| `Client Name` | `<title>`, meta, JSON-LD, header, hero, footer |
+| `hello@example.com` | contact block, form `action` |
 | `https://example.com/` | canonical, OG tags, JSON-LD |
-| `Creative Professional` | hero `<h1>`, JSON-LD `jobTitle` |
-| `Service Title One…Four` | the "What I Do" cards |
-| `Project Title (YYYY)` | journey poster wall captions |
 | `#` in `href="#"` | Instagram / LinkedIn / profile links |
+| `img/portrait.svg` | hero portrait — replace with a real 4:5 photo |
+| `img/tool-1…5.svg` | tool chips |
+| `social-preview.svg` | export a real 1200×630 **JPG** |
 
-### 3. Images still to replace
+**The Journey section has no real content** — it still shows 12 copies of `poster.svg`.
+Either fill it in or delete `<section id="journey">` and its nav link.
 
-The work library is real. These few placeholders are not:
-
-| File | Ratio | Used for |
-| --- | --- | --- |
-| `img/portrait.svg` | 4:5 | hero portrait — **replace with a real photo** |
-| `img/tool-1…5.svg` | square | tool chips (white glyph on dark circle) |
-| `img/poster.svg` | 2:3 | journey poster wall — reused 12× |
-| `img/social-preview.svg` | 1200×630 | Open Graph card — export as **.jpg** |
-
-If you change extensions (`.svg` → `.jpg`), update the `src` attributes.
-
-### 4. The Journey section
-
-This is the one section with no Drive content behind it — it still shows 12 copies of
-`poster.svg` with `Project Title (YYYY)` captions. Either fill it with real career
-milestones or delete the whole `<section id="journey">` block plus its nav link.
-
-### 5. Contact form
-
-Uses [FormSubmit](https://formsubmit.co) — no backend required. Put the client's real
-address in the form `action`, then submit the form **once from the live domain**; FormSubmit
-emails a confirmation link that activates it.
-
----
-
-## How it works
-
-Three self-contained IIFEs at the bottom of `index.html`:
-
-1. **Reveal on scroll** — `IntersectionObserver` adds `.is-in` to every `[data-reveal]`
-   element as it enters the viewport, then unobserves it. Falls back to showing everything
-   if the API is missing.
-2. **Card tilt** — pointer position on each `.whatido-card` drives CSS custom properties
-   (`--mx`, `--my`, `--tilt-x`, `--tilt-y`) for the 3D tilt and glare. Disabled on touch
-   devices and under `prefers-reduced-motion`.
-3. **Video lightbox** — clicking any `#portfolio video` clones its `<source>` elements into
-   the fixed glass modal and plays there instead of inline. Closes on backdrop click, the
-   × button, or Escape. Each clip carries `data-orient`, and the modal adds `.is-portrait`
-   for 9:16 clips so the panel narrows instead of letterboxing.
-
-Fonts load from Google Fonts: Space Grotesk (headings), Manrope (body), Caveat
-(handwritten accents). The optional `Display Outline` `@font-face` at the top of the
-stylesheet is for the oversized hero watermark — drop files into `assets/fonts/display/`
-or delete the block; it falls back to Space Grotesk.
-
-Responsive breakpoints at **1080px** and **760px**, plus a full
-`prefers-reduced-motion` block that kills all animation.
+**Contact form** uses [FormSubmit](https://formsubmit.co) — no backend. Put the real
+address in the form `action`, then submit once from the live domain to activate it.
 
 ---
 
 ## Deploying
 
-It is a static folder — drag it into Netlify Drop, or push to GitHub and enable Pages /
-connect Vercel. No build command, no output directory.
+Static folder, no build command. The repo root has a `vercel.json` pointing Vercel at this
+subfolder, so a plain Git push deploys it.
 
-Before going live, update `https://example.com/` in the canonical link, OG tags, and
-JSON-LD to the real domain, and swap `social-preview.svg` for a real 1200×630 JPG.
-
-**Note on size:** `assets/media/` is 195MB. That is fine for Netlify/Vercel but exceeds
-GitHub's comfortable repo size — if you push to GitHub, either use Git LFS for
-`assets/media/**` or host the video files on a CDN/Vimeo and point the `<source>` tags at
-those URLs instead.
+`assets/media/` is 195MB. Fine for Vercel/Netlify; heavy for GitHub. If the repo gets
+unwieldy, move the videos to a CDN or Vimeo and update the `<source>` tags.

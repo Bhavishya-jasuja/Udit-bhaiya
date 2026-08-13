@@ -1,0 +1,228 @@
+/* ==========================================================================
+   Responsive — mobile-first scale-ups
+   Base styles (phone) live in the other files; everything here widens them.
+
+   Breakpoints
+     560px   large phone / small tablet portrait
+     768px   tablet portrait
+     1024px  tablet landscape / small laptop  <- hero goes side-by-side
+     1280px  desktop
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   560px — large phones
+   -------------------------------------------------------------------------- */
+@media (min-width: 560px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .masonry {
+    columns: 2;
+  }
+
+  .journey-poster-wall {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contact-form__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .contact-submit {
+    width: auto;
+    padding-inline: var(--space-6);
+  }
+
+  .site-footer {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   768px — tablet portrait
+   -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+  .whatido-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .masonry {
+    columns: 3;
+  }
+
+  .journey-poster-wall {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .hero__meta {
+    max-width: 560px;
+  }
+
+  .hero-tool {
+    width: 54px;
+    height: 54px;
+  }
+
+  .hero-tool img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .section__script {
+    position: absolute;
+    right: 0;
+    top: -0.6em;
+    left: auto;
+    margin: 0;
+    transform: rotate(-4deg);
+    transform-origin: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1024px — hero splits, desktop nav replaces the drawer
+   -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+  .hero {
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+    align-items: end;
+    gap: var(--space-7);
+    min-height: min(78vh, 860px);
+    padding-top: var(--space-6);
+  }
+
+  .hero__portrait {
+    justify-self: end;
+    max-width: 460px;
+  }
+
+  .hero__image-subtitle {
+    display: block;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .masonry {
+    columns: 4;
+  }
+
+  .journey-poster-wall {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .contact-grid {
+    grid-template-columns: minmax(0, 1.35fr) minmax(240px, 0.65fr);
+    align-items: start;
+  }
+
+  /* ---- Desktop navigation: unwind the mobile drawer ---- */
+  .nav-toggle,
+  .nav-backdrop {
+    display: none;
+  }
+
+  /* Drops the clipping frame's box entirely so the nav returns to header flow */
+  .nav-drawer {
+    display: contents;
+  }
+
+  /* Safe to blur only now that no fixed-position drawer lives inside the
+     header — see the note in 02-layout.css. */
+  .site-header {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: linear-gradient(180deg, rgba(240, 239, 241, 0.92), rgba(240, 239, 241, 0.68));
+  }
+
+  .topnav {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: 0;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-4);
+    background: none;
+    border: 0;
+    box-shadow: none;
+    transform: none;
+    overflow: visible;
+  }
+
+  .topnav a {
+    padding: var(--space-1) 0;
+    font-size: 0.7rem;
+    border-bottom: 0;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   1280px — desktop
+   -------------------------------------------------------------------------- */
+@media (min-width: 1280px) {
+  .showreel-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .showreel-grid.is-single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .gallery {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Landscape phones — the drawer must not become taller than the screen
+   -------------------------------------------------------------------------- */
+@media (max-width: 1023px) and (orientation: landscape) {
+  .topnav {
+    padding-top: calc(var(--header-h) + var(--space-3));
+  }
+
+  .topnav a {
+    padding-block: var(--space-2);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Coarse pointers — no hover-dependent affordances
+   -------------------------------------------------------------------------- */
+@media (hover: none) {
+  .tile__open {
+    /* Always show the play badge; there is no hover to reveal it */
+    background: linear-gradient(180deg, transparent 50%, rgba(9, 6, 16, 0.6));
+  }
+
+  .shot:hover img,
+  .masonry figure:hover img {
+    transform: none;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Print
+   -------------------------------------------------------------------------- */
+@media print {
+  .site-header,
+  .nav-backdrop,
+  .video-popup,
+  .contact-form {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}

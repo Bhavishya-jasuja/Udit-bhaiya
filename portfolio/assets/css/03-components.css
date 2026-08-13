@@ -1,0 +1,667 @@
+/* ==========================================================================
+   Components — section headings, cards, galleries, lightbox, forms
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Section headings
+   -------------------------------------------------------------------------- */
+
+.section__script {
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-script);
+  font-size: clamp(1.9rem, 8vw, 5.5rem);
+  line-height: 1;
+  color: rgba(var(--accent-rgb), 0.22);
+  pointer-events: none;
+  transform: rotate(-3deg);
+  transform-origin: left center;
+}
+
+.section__title {
+  margin: 0;
+  font-size: var(--fs-display);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.section__lead {
+  margin-top: var(--space-4);
+  max-width: 64ch;
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   Showreel
+   -------------------------------------------------------------------------- */
+
+.showreel-grid {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.showreel-card {
+  margin: 0;
+}
+
+.showreel-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--r-lg);
+  background: #000;
+  box-shadow: var(--shadow-lg);
+}
+
+.showreel-frame video,
+.showreel-frame iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  background: #000;
+}
+
+.showreel-caption {
+  margin-top: var(--space-3);
+}
+
+.showreel-caption h3 {
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+
+.showreel-caption p {
+  margin-top: var(--space-2);
+  color: var(--muted);
+}
+
+/* --------------------------------------------------------------------------
+   "What I Do" glass cards
+   -------------------------------------------------------------------------- */
+
+.whatido-block {
+  margin-top: var(--space-7);
+}
+
+.whatido-title {
+  margin: 0;
+  font-size: var(--fs-xl);
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.whatido-intro {
+  margin-top: var(--space-2);
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.whatido-grid {
+  margin-top: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.whatido-card {
+  --mx: 50%;
+  --my: 50%;
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --lift: 0px;
+  margin: 0;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(255, 255, 255, 0.14));
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(16px) saturate(145%);
+  -webkit-backdrop-filter: blur(16px) saturate(145%);
+  transform: perspective(920px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(var(--lift));
+  transition: transform var(--t-med) var(--ease), box-shadow var(--t-med) var(--ease);
+}
+
+.whatido-card::before,
+.whatido-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.whatido-card::before {
+  background:
+    radial-gradient(220px 150px at var(--mx) var(--my), rgba(255, 255, 255, 0.34), transparent 62%),
+    radial-gradient(120% 70% at 18% -10%, rgba(255, 255, 255, 0.8), transparent 58%);
+}
+
+.whatido-card::after {
+  opacity: 0.55;
+  background: radial-gradient(
+    220px 180px at var(--mx) var(--my),
+    rgba(var(--accent-rgb), 0.3),
+    transparent 72%
+  );
+  transition: opacity var(--t-fast) var(--ease);
+}
+
+.whatido-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.whatido-card.is-active::after {
+  opacity: 0.92;
+}
+
+.whatido-meta {
+  display: inline-block;
+  margin-bottom: var(--space-2);
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.whatido-card h4 {
+  margin: 0;
+  font-size: var(--fs-lg);
+}
+
+.whatido-card p {
+  margin-top: var(--space-2);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   Category blocks
+   -------------------------------------------------------------------------- */
+
+.cat-block {
+  margin-top: var(--space-7);
+}
+
+.cat-heading {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: var(--fs-xl);
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.cat-count {
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--accent-strong);
+  background: rgba(var(--accent-rgb), 0.12);
+  border: 1px solid rgba(var(--accent-rgb), 0.22);
+  white-space: nowrap;
+}
+
+.cat-note {
+  margin-top: var(--space-2);
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.brand-group {
+  margin-top: var(--space-5);
+}
+
+.brand-head {
+  margin: 0 0 var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+}
+
+.brand-head::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(var(--accent-rgb), 0.34), transparent);
+}
+
+/* --------------------------------------------------------------------------
+   Media galleries
+   -------------------------------------------------------------------------- */
+
+.gallery {
+  display: grid;
+  gap: var(--space-3);
+  /* 2 columns on phones; scaled up in 04-responsive.css */
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* ---- Video tile ----
+   The tile is a thumbnail, not an inline player: native controls are hidden
+   and the whole tile is one big button that opens the lightbox. That keeps
+   the touch target large instead of shrinking scrub bars onto a phone. */
+
+.tile {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  background: #0d0a14;
+  box-shadow: var(--shadow-sm);
+}
+
+.tile video {
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  pointer-events: none;
+  background: #0d0a14;
+}
+
+.tile--wide video {
+  aspect-ratio: 16 / 9;
+}
+
+.tile__open {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: var(--space-3);
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(180deg, transparent 55%, rgba(9, 6, 16, 0.55));
+  opacity: 1;
+  transition: background var(--t-med) var(--ease);
+}
+
+.tile__play {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--r-pill);
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-fast) var(--ease), background var(--t-fast) var(--ease);
+}
+
+.tile__play svg {
+  width: 15px;
+  height: 15px;
+  fill: var(--ink);
+  margin-left: 2px;
+}
+
+.tile__open:hover .tile__play,
+.tile__open:focus-visible .tile__play {
+  transform: scale(1.1);
+  background: #fff;
+}
+
+/* ---- Image tiles ---- */
+
+.shot {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.shot img {
+  width: 100%;
+  /* height:auto is required — the width/height attributes act as
+     presentational hints and would otherwise beat aspect-ratio. */
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.shot:hover img {
+  transform: scale(1.04);
+}
+
+/* ---- Mixed-ratio masonry ---- */
+
+.masonry {
+  columns: 2;
+  column-gap: var(--space-3);
+}
+
+.masonry figure {
+  margin: 0 0 var(--space-3);
+  break-inside: avoid;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.masonry img {
+  width: 100%;
+  height: auto;
+  transition: transform var(--t-slow) var(--ease);
+}
+
+.masonry figure:hover img {
+  transform: scale(1.04);
+}
+
+/* ---- Journey poster wall ---- */
+
+.journey-poster-wall {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.journey-poster-wall .jp {
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--r-md);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.journey-poster-wall .jp img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.journey-poster-wall .jp figcaption {
+  padding: var(--space-2) var(--space-3) var(--space-3);
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--muted-strong);
+}
+
+/* --------------------------------------------------------------------------
+   Lightbox
+   -------------------------------------------------------------------------- */
+
+.video-popup {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--t-med) var(--ease);
+}
+
+.video-popup[hidden] {
+  display: none;
+}
+
+.video-popup.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.video-popup__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 7, 18, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.video-popup__panel {
+  position: relative;
+  width: min(1100px, 100%);
+  padding: var(--space-2);
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: linear-gradient(142deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0.1));
+  box-shadow: var(--shadow-xl);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  transform: translateY(12px) scale(0.985);
+  transition: transform var(--t-med) var(--ease);
+}
+
+.video-popup.is-open .video-popup__panel {
+  transform: none;
+}
+
+/* Portrait clips get a narrow panel instead of being letterboxed */
+.video-popup.is-portrait .video-popup__panel {
+  width: min(420px, 100%);
+}
+
+.video-popup__frame {
+  overflow: hidden;
+  border-radius: var(--r-sm);
+  background: #000;
+}
+
+.video-popup__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 74svh;
+  background: #000;
+}
+
+.video-popup.is-portrait .video-popup__video {
+  aspect-ratio: 9 / 16;
+  object-fit: contain;
+}
+
+.video-popup__title {
+  margin: var(--space-2) var(--space-1) var(--space-1);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.video-popup__close {
+  position: absolute;
+  right: var(--space-2);
+  top: var(--space-2);
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--r-pill);
+  background: rgba(20, 14, 32, 0.6);
+  color: #fff;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.video-popup__close:hover {
+  background: rgba(20, 14, 32, 0.85);
+}
+
+/* --------------------------------------------------------------------------
+   Contact
+   -------------------------------------------------------------------------- */
+
+.end-note {
+  margin-top: var(--section-gap);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line-strong);
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+.end-note h2 {
+  margin: 0;
+  font-size: var(--fs-2xl);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.end-note > p {
+  margin-top: var(--space-3);
+  max-width: 60ch;
+  color: var(--muted);
+}
+
+.contact-grid {
+  margin-top: var(--space-5);
+  display: grid;
+  gap: var(--space-4);
+}
+
+.contact-form {
+  margin: 0;
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.13));
+  box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.56);
+  backdrop-filter: blur(12px) saturate(132%);
+  -webkit-backdrop-filter: blur(12px) saturate(132%);
+}
+
+.contact-form__row {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.contact-form__group {
+  margin-top: var(--space-3);
+}
+
+.contact-form__group:first-child {
+  margin-top: 0;
+}
+
+.contact-field {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.8);
+  /* 16px minimum stops iOS Safari zooming the page on focus */
+  font-family: inherit;
+  font-size: 16px;
+  color: var(--ink);
+}
+
+.contact-field::placeholder {
+  color: #6d6680;
+}
+
+.contact-field:focus {
+  outline: none;
+  border-color: rgba(var(--accent-rgb), 0.54);
+  box-shadow: 0 0 0 3px rgba(var(--accent-rgb), 0.16);
+}
+
+textarea.contact-field {
+  min-height: 140px;
+  padding: var(--space-3);
+  resize: vertical;
+}
+
+.contact-submit {
+  margin-top: var(--space-4);
+  width: 100%;
+  min-height: 50px;
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--accent);
+  color: #faf7ff;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background var(--t-fast) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+.contact-submit:hover {
+  background: var(--accent-strong);
+  transform: translateY(-1px);
+}
+
+.contact-info {
+  padding: var(--space-4);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-info__block + .contact-info__block {
+  margin-top: var(--space-4);
+}
+
+.contact-info h4 {
+  margin: 0;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.contact-info p {
+  margin-top: var(--space-1);
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.contact-info a:hover {
+  color: var(--accent);
+}
+
+.contact-social {
+  margin-top: var(--space-2);
+}
+
+.end-links {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.end-links a {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted-strong);
+}
+
+.end-links a:hover {
+  color: var(--accent);
+}
