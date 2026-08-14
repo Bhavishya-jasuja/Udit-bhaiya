@@ -55,6 +55,16 @@ const MAX_PER_GROUP = 4;
 /* Order the categories appear in the Portfolio section. */
 const CATEGORY_ORDER = ['education', 'pharmacy', 'gastronomy', 'sports', 'real-estate', 'graphics'];
 
+/* Which second of a clip to freeze as its thumbnail. Browsers paint the frame
+   at the "#t=" fragment, so this is the poster image without any extra files.
+   Default is 0.1s; override any clip that opens on a fade or a dark shot. */
+const DEFAULT_THUMB_TIME = 0.1;
+const THUMB_TIMES = {
+  'real-estate/6.mp4': 2
+};
+
+const thumbTime = (rel) => THUMB_TIMES[rel] ?? DEFAULT_THUMB_TIME;
+
 /* Which clip anchors the Show Reel. Pinned rather than auto-picked so adding
    another landscape film later cannot silently move the feature. Set to null
    to fall back to "largest landscape clip". */
@@ -268,7 +278,9 @@ const M = './assets/media/';
    Fragments
    -------------------------------------------------------------------------- */
 
-const PLAY_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
+// stroke-linejoin="round" on a fill also gives the triangle rounded corners
+const PLAY_ICON =
+  '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.53.85l10.4-6.5a1 1 0 0 0 0-1.7L9.53 4.65A1 1 0 0 0 8 5.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>';
 
 function tile(item, captionParts, indent) {
   const i = ' '.repeat(indent);
@@ -279,7 +291,7 @@ function tile(item, captionParts, indent) {
   return [
     `${i}<figure class="tile${wide}" data-reveal>`,
     `${i}  <video data-lazy muted playsinline preload="none" aria-hidden="true" tabindex="-1">`,
-    `${i}    <source src="${M}${item.rel}#t=0.1" type="video/mp4" />`,
+    `${i}    <source src="${M}${item.rel}#t=${thumbTime(item.rel)}" type="video/mp4" />`,
     `${i}  </video>`,
     `${i}  <button class="tile__open" type="button" data-video-open`,
     `${i}    data-video-src="${M}${item.rel}"`,
@@ -340,8 +352,8 @@ const showreel = `      <section class="section" id="showreel">
             <div class="showreel-frame">
               <!-- data-lazy: the first frame is painted once the section nears
                    the viewport, so the frame is never an empty black box. -->
-              <video data-lazy controls playsinline preload="none" width="${feature.w}" height="${feature.h}">
-                <source src="${M}${feature.rel}#t=0.1" type="video/mp4" />
+              <video data-lazy data-reset-on-play="${thumbTime(feature.rel)}" controls playsinline preload="none" width="${feature.w}" height="${feature.h}">
+                <source src="${M}${feature.rel}#t=${thumbTime(feature.rel)}" type="video/mp4" />
                 Your browser does not support embedded video.
               </video>
             </div>

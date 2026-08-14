@@ -173,8 +173,13 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* 4, not 5 — matches MAX_PER_GROUP in build-gallery.js, so a full row of
+     4 videos lands flush against the right edge instead of leaving a bare
+     5th column. (This was the actual bug in the old 5-column version; fixed
+     here directly rather than via stretching, which caused sparser rows —
+     e.g. Education's 2 videos — to render oversized.) */
   .gallery {
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 
@@ -196,8 +201,9 @@
    -------------------------------------------------------------------------- */
 @media (hover: none) {
   .tile__open {
-    /* Always show the play badge; there is no hover to reveal it */
-    background: linear-gradient(180deg, transparent 50%, rgba(9, 6, 16, 0.6));
+    /* Slightly stronger scrim than the desktop default — there is no hover
+       state on touch to darken it, so contrast has to come from the base. */
+    background: linear-gradient(180deg, rgba(9, 6, 16, 0.12) 0%, rgba(9, 6, 16, 0.06) 55%, rgba(9, 6, 16, 0.55) 100%);
   }
 
   .shot:hover img,
