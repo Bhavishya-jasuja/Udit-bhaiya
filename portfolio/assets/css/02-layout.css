@@ -252,16 +252,36 @@
   color: var(--muted-strong);
 }
 
+/* Two lines, both the same size — "Make your brand" in black, then
+   "Impossible to Ignore." in the brand gradient. Colour carries the emphasis,
+   not a size jump between the two. */
 .hero__name {
-  margin: var(--space-2) 0 0;
-  font-size: var(--fs-2xl);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
+  margin: var(--space-3) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05em;
 }
 
-.hero__name span {
-  color: var(--accent);
+.hero__name-lead,
+.hero__name-punch {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 1.15rem + 3vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.hero__name-lead {
+  color: var(--ink);
+}
+
+.hero__name-punch {
+  /* Same gradient as the "Wonders" wordmark and the footer credit — ties
+     the hero's statement back to the brand mark. */
+  background: linear-gradient(92deg, var(--accent) 0%, #9a6cf5 55%, var(--accent-strong) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .hero__copy {
