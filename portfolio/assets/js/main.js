@@ -5,7 +5,6 @@
 
 import { initNav } from './modules/nav.js';
 import { initReveal } from './modules/reveal.js';
-import { initTilt } from './modules/tilt.js';
 import { initLazyVideo } from './modules/lazy-video.js';
 import { initLightbox } from './modules/lightbox.js';
 import { initScrollSpy } from './modules/scrollspy.js';
@@ -13,7 +12,6 @@ import { initScrollSpy } from './modules/scrollspy.js';
 const boot = [
   ['nav', initNav],
   ['reveal', initReveal],
-  ['tilt', initTilt],
   ['lazy-video', initLazyVideo],
   ['lightbox', initLightbox],
   ['scrollspy', initScrollSpy]

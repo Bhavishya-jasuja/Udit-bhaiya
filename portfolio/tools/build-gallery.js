@@ -339,71 +339,13 @@ const videoCount = all.filter((i) => i.kind === 'video').length;
 const imageCount = all.filter((i) => i.kind === 'image').length;
 const brandCount = groupsUnder('gastronomy').length;
 
-const showreel = `      <section class="section" id="showreel">
-        <p class="section__script">show reel</p>
-        <h2 class="section__title" data-reveal>Show Reel</h2>
-        <p class="section__lead" data-reveal>
-          This is our longest film. Most of our other work is made for phones, so you will find it in the
-          section below.
-        </p>
-
-        <div class="showreel-grid is-single">
-          <article class="showreel-card" data-reveal>
-            <div class="showreel-frame">
-              <!-- data-lazy: the first frame is painted once the section nears
-                   the viewport, so the frame is never an empty black box. -->
-              <video data-lazy data-reset-on-play="${thumbTime(feature.rel)}" controls playsinline preload="none" width="${feature.w}" height="${feature.h}">
-                <source src="${M}${feature.rel}#t=${thumbTime(feature.rel)}" type="video/mp4" />
-                Your browser does not support embedded video.
-              </video>
-            </div>
-            <div class="showreel-caption">
-              <h3>Property Film</h3>
-              <p>A full-length video shot and edited for a property listing.</p>
-            </div>
-          </article>
-        </div>
-
-        <div class="whatido-block" data-reveal>
-          <h3 class="whatido-title">What We Do</h3>
-          <p class="whatido-intro">We work with six kinds of businesses.</p>
-          <div class="whatido-grid">
-            <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('education').length, 'video')}</span>
-              <h4>Education</h4>
-              <p>Videos for schools and coaching institutes. Useful during admission season and for showing parents around the campus.</p>
-            </article>
-            <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('pharmacy').length, 'video')}</span>
-              <h4>Pharmacy</h4>
-              <p>Store and product videos for pharmacy brands. We keep these simple and easy to follow.</p>
-            </article>
-            <article class="whatido-card">
-              <span class="whatido-meta">${COUNT_OVERRIDES.gastronomy}</span>
-              <h4>Cafes &amp; Restaurants</h4>
-              <p>Food and interior videos for cafes, restaurants and resorts. Cut for Instagram reels and stories.</p>
-            </article>
-            <article class="whatido-card">
-              <span class="whatido-meta">${inDir('sports/videos').length} videos, ${inDir('sports/graphics').length} designs</span>
-              <h4>Sports Club</h4>
-              <p>Match day videos and poster designs for sports clubs. We handle the filming and the graphics together.</p>
-            </article>
-            <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('real-estate').length, 'video')}</span>
-              <h4>Real Estate</h4>
-              <p>Property videos for agents and builders. One full-length version, plus short cuts for social media.</p>
-            </article>
-            <article class="whatido-card">
-              <span class="whatido-meta">${plural(inDir('graphics').length, 'design')}</span>
-              <h4>Graphics</h4>
-              <p>Posters, offer creatives and social media templates, designed to match the video work.</p>
-            </article>
-          </div>
-        </div>
-      </section>`;
-
 /* --------------------------------------------------------------------------
    Portfolio
+   (There used to be a separate Show Reel section above this, with the pinned
+   feature film and a "What We Do" summary grid — removed at the client's
+   request. `feature` is still computed above because pick() uses it to keep
+   that one film out of the Real Estate grid; the film itself is no longer
+   shown anywhere on the page.)
    -------------------------------------------------------------------------- */
 
 function categoryBlock({ id, count, note, body }) {
@@ -510,7 +452,6 @@ function inject(html, name, replacement) {
 }
 
 let html = fs.readFileSync(INDEX, 'utf8');
-html = inject(html, 'SHOWREEL', showreel);
 html = inject(html, 'PORTFOLIO', portfolio);
 fs.writeFileSync(INDEX, html, 'utf8');
 
@@ -524,7 +465,7 @@ if (skipped.length) {
 
 const mb = (all.reduce((a, i) => a + i.bytes, 0) / 1048576).toFixed(0);
 console.log(`media scanned : ${all.length} files (${videoCount} video, ${imageCount} image, ${mb}MB)`);
-console.log(`showreel      : ${feature.rel} (${feature.w}x${feature.h})`);
+console.log(`excluded      : ${feature.rel} (${feature.w}x${feature.h}) — was the Show Reel feature, no longer shown anywhere`);
 console.log(`gastronomy    : ${under('gastronomy').length} across ${brandCount} brands`);
 console.log(`sports        : ${sportsVideos.length} video + ${sportsGraphics.length} key art`);
 console.log(`real estate   : ${realEstate.length} vertical`);

@@ -45,10 +45,6 @@
    768px — tablet portrait
    -------------------------------------------------------------------------- */
 @media (min-width: 768px) {
-  .whatido-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .masonry {
     columns: 3;
   }
@@ -165,14 +161,6 @@
    1280px — desktop
    -------------------------------------------------------------------------- */
 @media (min-width: 1280px) {
-  .showreel-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .showreel-grid.is-single {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
   /* 4, not 5 — matches MAX_PER_GROUP in build-gallery.js, so a full row of
      4 videos lands flush against the right edge instead of leaving a bare
      5th column. (This was the actual bug in the old 5-column version; fixed

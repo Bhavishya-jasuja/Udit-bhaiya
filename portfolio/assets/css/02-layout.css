@@ -252,6 +252,18 @@
   color: var(--muted-strong);
 }
 
+/* Divider between the two founder credits — thin, accent-coloured and not
+   bold/uppercase like the surrounding text, so it reads as a quiet mark
+   rather than a third word. */
+.hero__kicker-sep {
+  display: inline-block;
+  margin: 0 0.6em;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--accent);
+  opacity: 0.6;
+}
+
 /* Two lines, both the same size — "Make your brand" in black, then
    "Impossible to Ignore." in the brand gradient. Colour carries the emphasis,
    not a size jump between the two. */
